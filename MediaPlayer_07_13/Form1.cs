@@ -19,7 +19,7 @@ namespace MediaPlayer_07_13
 
         private void button1_Click(object sender, EventArgs e)
         {
-            button1.Text = "API B";
+            button1.Text = "Aplicações Informáticas B";
         }
     }
 }
