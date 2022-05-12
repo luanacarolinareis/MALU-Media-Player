@@ -7,15 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace MediaPlayer_07_13
 {
     public partial class FormAudioPlayer : Form
     {
+        string audioPlayerName;
+        SoundPlayer audioPlayer;
         public FormAudioPlayer()
         {
             InitializeComponent();
         }
+
+        #region geral
 
         #region Botões de close, maximize and minimize
 
@@ -69,6 +74,45 @@ namespace MediaPlayer_07_13
             formVideoPlayer.ShowDialog();
         }
 
+
         #endregion
+
+        #endregion
+
+        /// <summary>
+        /// (placeholder) selects the file to be played and initiates it in the player
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFilePlaceholder_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            audioPlayerName = openFileDialog.FileName;
+            audioPlayer = new SoundPlayer(audioPlayerName);
+        }
+
+        /// <summary>
+        /// starts and stops reproduction
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPlayPause_Click(object sender, EventArgs e)
+        {
+            int play = 0; // audio's state ( in play: play=1 ; stopped play=0 )
+            if (play == 0)
+            {
+                
+                audioPlayer.Play();
+                play = 1;
+            }
+            else
+            {
+                audioPlayer.Stop();
+                play = 0;
+            }
+        }
+
+        
     }
 }

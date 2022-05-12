@@ -37,6 +37,13 @@
             this.ToolStripMenuItemVideoPlayer = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAjuda = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAcercaDe = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirFicheiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tocaerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adicionarAListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPlayPause = new System.Windows.Forms.Button();
+            this.btnSkipTen = new System.Windows.Forms.Button();
+            this.btnBackTen = new System.Windows.Forms.Button();
+            this.btnFilePlaceholder = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.menuStripOptions.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +56,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 58);
+            this.panel2.Size = new System.Drawing.Size(954, 58);
             this.panel2.TabIndex = 3;
             // 
             // buttonClose
@@ -57,7 +64,7 @@
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose.BackColor = System.Drawing.Color.Transparent;
             this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClose.Location = new System.Drawing.Point(731, 12);
+            this.buttonClose.Location = new System.Drawing.Point(885, 12);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(36, 31);
             this.buttonClose.TabIndex = 1;
@@ -77,14 +84,15 @@
             this.ToolStripMenuItemAjuda});
             this.menuStripOptions.Location = new System.Drawing.Point(9, 13);
             this.menuStripOptions.Name = "menuStripOptions";
-            this.menuStripOptions.Size = new System.Drawing.Size(419, 30);
+            this.menuStripOptions.Size = new System.Drawing.Size(269, 30);
             this.menuStripOptions.TabIndex = 0;
             this.menuStripOptions.Text = "menuStrip1";
             // 
             // ToolStripMenuItemFicheiro
             // 
             this.ToolStripMenuItemFicheiro.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemSair});
+            this.ToolStripMenuItemSair,
+            this.abrirFicheiroToolStripMenuItem});
             this.ToolStripMenuItemFicheiro.Name = "ToolStripMenuItemFicheiro";
             this.ToolStripMenuItemFicheiro.Size = new System.Drawing.Size(83, 26);
             this.ToolStripMenuItemFicheiro.Text = "Ficheiro";
@@ -107,7 +115,7 @@
             // ToolStripMenuItemVideoPlayer
             // 
             this.ToolStripMenuItemVideoPlayer.Name = "ToolStripMenuItemVideoPlayer";
-            this.ToolStripMenuItemVideoPlayer.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItemVideoPlayer.Size = new System.Drawing.Size(189, 26);
             this.ToolStripMenuItemVideoPlayer.Text = "Video Player";
             this.ToolStripMenuItemVideoPlayer.Click += new System.EventHandler(this.ToolStripMenuItemVideoPlayer_Click);
             // 
@@ -122,15 +130,84 @@
             // ToolStripMenuItemAcercaDe
             // 
             this.ToolStripMenuItemAcercaDe.Name = "ToolStripMenuItemAcercaDe";
-            this.ToolStripMenuItemAcercaDe.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItemAcercaDe.Size = new System.Drawing.Size(181, 26);
             this.ToolStripMenuItemAcercaDe.Text = "Acerca de...";
             this.ToolStripMenuItemAcercaDe.Click += new System.EventHandler(this.ToolStripMenuItemAcercaDe_Click);
+            // 
+            // abrirFicheiroToolStripMenuItem
+            // 
+            this.abrirFicheiroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tocaerToolStripMenuItem,
+            this.adicionarAListaToolStripMenuItem});
+            this.abrirFicheiroToolStripMenuItem.Name = "abrirFicheiroToolStripMenuItem";
+            this.abrirFicheiroToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.abrirFicheiroToolStripMenuItem.Text = "Abrir Ficheiro";
+            // 
+            // tocaerToolStripMenuItem
+            // 
+            this.tocaerToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tocaerToolStripMenuItem.Name = "tocaerToolStripMenuItem";
+            this.tocaerToolStripMenuItem.Size = new System.Drawing.Size(280, 32);
+            this.tocaerToolStripMenuItem.Text = "Tocar Imediatamente";
+            // 
+            // adicionarAListaToolStripMenuItem
+            // 
+            this.adicionarAListaToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adicionarAListaToolStripMenuItem.Name = "adicionarAListaToolStripMenuItem";
+            this.adicionarAListaToolStripMenuItem.Size = new System.Drawing.Size(280, 32);
+            this.adicionarAListaToolStripMenuItem.Text = "Adicionar a lista";
+            // 
+            // btnPlayPause
+            // 
+            this.btnPlayPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlayPause.Location = new System.Drawing.Point(422, 558);
+            this.btnPlayPause.Name = "btnPlayPause";
+            this.btnPlayPause.Size = new System.Drawing.Size(110, 110);
+            this.btnPlayPause.TabIndex = 4;
+            this.btnPlayPause.Text = "Play\r\nPause";
+            this.btnPlayPause.UseVisualStyleBackColor = true;
+            this.btnPlayPause.Click += new System.EventHandler(this.btnPlayPause_Click);
+            // 
+            // btnSkipTen
+            // 
+            this.btnSkipTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSkipTen.Location = new System.Drawing.Point(538, 577);
+            this.btnSkipTen.Name = "btnSkipTen";
+            this.btnSkipTen.Size = new System.Drawing.Size(78, 78);
+            this.btnSkipTen.TabIndex = 5;
+            this.btnSkipTen.Text = "+ 10s";
+            this.btnSkipTen.UseVisualStyleBackColor = true;
+            // 
+            // btnBackTen
+            // 
+            this.btnBackTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBackTen.Location = new System.Drawing.Point(338, 577);
+            this.btnBackTen.Name = "btnBackTen";
+            this.btnBackTen.Size = new System.Drawing.Size(78, 78);
+            this.btnBackTen.TabIndex = 6;
+            this.btnBackTen.Text = "- 10s";
+            this.btnBackTen.UseVisualStyleBackColor = true;
+            // 
+            // btnFilePlaceholder
+            // 
+            this.btnFilePlaceholder.Location = new System.Drawing.Point(33, 105);
+            this.btnFilePlaceholder.Name = "btnFilePlaceholder";
+            this.btnFilePlaceholder.Size = new System.Drawing.Size(126, 108);
+            this.btnFilePlaceholder.TabIndex = 7;
+            this.btnFilePlaceholder.Text = "choose file\r\nplaceholder";
+            this.btnFilePlaceholder.UseVisualStyleBackColor = true;
+            this.btnFilePlaceholder.Click += new System.EventHandler(this.btnFilePlaceholder_Click);
             // 
             // FormAudioPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.SkyBlue;
+            this.ClientSize = new System.Drawing.Size(954, 684);
+            this.Controls.Add(this.btnFilePlaceholder);
+            this.Controls.Add(this.btnBackTen);
+            this.Controls.Add(this.btnSkipTen);
+            this.Controls.Add(this.btnPlayPause);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormAudioPlayer";
@@ -155,5 +232,12 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAcercaDe;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemMultimedia;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemVideoPlayer;
+        private System.Windows.Forms.ToolStripMenuItem abrirFicheiroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tocaerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adicionarAListaToolStripMenuItem;
+        private System.Windows.Forms.Button btnPlayPause;
+        private System.Windows.Forms.Button btnSkipTen;
+        private System.Windows.Forms.Button btnBackTen;
+        private System.Windows.Forms.Button btnFilePlaceholder;
     }
 }
