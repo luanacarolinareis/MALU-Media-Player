@@ -34,11 +34,11 @@
             this.menuStripOptions = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItemFicheiro = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemSair = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemAjuda = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemAcercaDe = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemMultimedia = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAudioPlayer = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemVideoPlayer = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemAjuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemAcercaDe = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             this.menuStripOptions.SuspendLayout();
             this.SuspendLayout();
@@ -88,7 +88,7 @@
             this.ToolStripMenuItemAjuda});
             this.menuStripOptions.Location = new System.Drawing.Point(9, 13);
             this.menuStripOptions.Name = "menuStripOptions";
-            this.menuStripOptions.Size = new System.Drawing.Size(269, 30);
+            this.menuStripOptions.Size = new System.Drawing.Size(419, 30);
             this.menuStripOptions.TabIndex = 0;
             this.menuStripOptions.Text = "menuStrip1";
             // 
@@ -103,24 +103,9 @@
             // ToolStripMenuItemSair
             // 
             this.ToolStripMenuItemSair.Name = "ToolStripMenuItemSair";
-            this.ToolStripMenuItemSair.Size = new System.Drawing.Size(122, 26);
+            this.ToolStripMenuItemSair.Size = new System.Drawing.Size(224, 26);
             this.ToolStripMenuItemSair.Text = "Sair";
             this.ToolStripMenuItemSair.Click += new System.EventHandler(this.ToolStripMenuItemSair_Click);
-            // 
-            // ToolStripMenuItemAjuda
-            // 
-            this.ToolStripMenuItemAjuda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemAcercaDe});
-            this.ToolStripMenuItemAjuda.Name = "ToolStripMenuItemAjuda";
-            this.ToolStripMenuItemAjuda.Size = new System.Drawing.Size(68, 26);
-            this.ToolStripMenuItemAjuda.Text = "Ajuda";
-            // 
-            // ToolStripMenuItemAcercaDe
-            // 
-            this.ToolStripMenuItemAcercaDe.Name = "ToolStripMenuItemAcercaDe";
-            this.ToolStripMenuItemAcercaDe.Size = new System.Drawing.Size(224, 26);
-            this.ToolStripMenuItemAcercaDe.Text = "Acerca de...";
-            this.ToolStripMenuItemAcercaDe.Click += new System.EventHandler(this.ToolStripMenuItemAcercaDe_Click);
             // 
             // ToolStripMenuItemMultimedia
             // 
@@ -134,16 +119,31 @@
             // ToolStripMenuItemAudioPlayer
             // 
             this.ToolStripMenuItemAudioPlayer.Name = "ToolStripMenuItemAudioPlayer";
-            this.ToolStripMenuItemAudioPlayer.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItemAudioPlayer.Size = new System.Drawing.Size(190, 26);
             this.ToolStripMenuItemAudioPlayer.Text = "Audio Player";
             this.ToolStripMenuItemAudioPlayer.Click += new System.EventHandler(this.ToolStripMenuItemAudioPlayer_Click);
             // 
             // ToolStripMenuItemVideoPlayer
             // 
             this.ToolStripMenuItemVideoPlayer.Name = "ToolStripMenuItemVideoPlayer";
-            this.ToolStripMenuItemVideoPlayer.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItemVideoPlayer.Size = new System.Drawing.Size(190, 26);
             this.ToolStripMenuItemVideoPlayer.Text = "Video Player";
             this.ToolStripMenuItemVideoPlayer.Click += new System.EventHandler(this.ToolStripMenuItemVideoPlayer_Click);
+            // 
+            // ToolStripMenuItemAjuda
+            // 
+            this.ToolStripMenuItemAjuda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemAcercaDe});
+            this.ToolStripMenuItemAjuda.Name = "ToolStripMenuItemAjuda";
+            this.ToolStripMenuItemAjuda.Size = new System.Drawing.Size(68, 26);
+            this.ToolStripMenuItemAjuda.Text = "Ajuda";
+            // 
+            // ToolStripMenuItemAcercaDe
+            // 
+            this.ToolStripMenuItemAcercaDe.Name = "ToolStripMenuItemAcercaDe";
+            this.ToolStripMenuItemAcercaDe.Size = new System.Drawing.Size(181, 26);
+            this.ToolStripMenuItemAcercaDe.Text = "Acerca de...";
+            this.ToolStripMenuItemAcercaDe.Click += new System.EventHandler(this.ToolStripMenuItemAcercaDe_Click);
             // 
             // FormMain
             // 

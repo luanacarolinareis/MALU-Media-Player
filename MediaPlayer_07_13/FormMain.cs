@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace MediaPlayer_07_13
 {
     public partial class FormMain : Form
     {
+        Thread videoPlayer, audioPlayer;
         public FormMain()
         {
             InitializeComponent();
@@ -65,8 +67,10 @@ namespace MediaPlayer_07_13
         /// <param name="e"></param>
         private void ToolStripMenuItemAudioPlayer_Click(object sender, EventArgs e)
         {
-            FormAudioPlayer formAudioPlayer = new FormAudioPlayer();
-            formAudioPlayer.ShowDialog();
+            this.Close();
+            audioPlayer = new Thread(abrirJanelaAudio);
+            audioPlayer.SetApartmentState(ApartmentState.STA);
+            audioPlayer.Start();
         }
 
         /// <summary>
@@ -76,8 +80,32 @@ namespace MediaPlayer_07_13
         /// <param name="e"></param>
         private void ToolStripMenuItemVideoPlayer_Click(object sender, EventArgs e)
         {
-            FormVideoPlayer formVideoPlayer = new FormVideoPlayer();
-            formVideoPlayer.ShowDialog();
+            this.Close();
+            videoPlayer = new Thread(abrirJanelaVideo);
+            videoPlayer.SetApartmentState(ApartmentState.STA);
+            videoPlayer.Start();
+        }
+
+        #endregion
+
+        #region Métodos de abertura dos Forms
+
+        /// <summary>
+        /// Abre a janela FormVideoPlayer
+        /// </summary>
+        /// <param name="obj"></param>
+        private void abrirJanelaVideo(object obj)
+        {
+            Application.Run(new FormVideoPlayer());
+        }
+
+        /// <summary>
+        /// Abre a janela FormAudioPlayer
+        /// </summary>
+        /// <param name="obj"></param>
+        private void abrirJanelaAudio(object obj)
+        {
+            Application.Run(new FormAudioPlayer());
         }
 
         #endregion
