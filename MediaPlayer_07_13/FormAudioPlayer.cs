@@ -7,17 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Media;
 
 namespace MediaPlayer_07_13
 {
     public partial class FormAudioPlayer : Form
     {
-        string audioPlayerName;
-        SoundPlayer audioPlayer;
+        //declaração de variáveis
+        int audioState = 1; //(a tocar: play=1 ; parado play=0)
+
         public FormAudioPlayer()
         {
             InitializeComponent();
+            axWindowsMediaPlayer.uiMode = "none";
         }
 
         #region geral
@@ -32,6 +33,7 @@ namespace MediaPlayer_07_13
         private void buttonClose_Click(object sender, EventArgs e)
         {
             this.Close();
+            axWindowsMediaPlayer.Ctlcontrols.stop();
         }
 
         #endregion
@@ -80,39 +82,89 @@ namespace MediaPlayer_07_13
         #endregion
 
         /// <summary>
-        /// (placeholder) selects the file to be played and initiates it in the player
+        /// selects the file to be played and initiates it in the player
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnFilePlaceholder_Click(object sender, EventArgs e)
+        private void ToolStripMenuItemTocar_Click(object sender, EventArgs e)
         {
+            // abre a janela de pesquisa de ficheiros
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
-            audioPlayerName = openFileDialog.FileName;
-            audioPlayer = new SoundPlayer(audioPlayerName);
+
+            // o player recebe o ficheiro a reproduzir
+            axWindowsMediaPlayer.URL = openFileDialog.FileName;
+            //labelTotalTime.Text = axWindowsMediaPlayer.Time
         }
 
         /// <summary>
-        /// starts and stops reproduction
+        /// inicia e pausa a reprodução
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnPlayPause_Click(object sender, EventArgs e)
         {
-            int play = 0; // audio's state ( in play: play=1 ; stopped play=0 )
-            if (play == 0)
+            // quando o audioState for 1 (ficheiro em reprodução) o botão irá pausar
+            if (audioState == 1)
             {
-                
-                audioPlayer.Play();
-                play = 1;
+                axWindowsMediaPlayer.Ctlcontrols.pause();
+                audioState = 0;
             }
-            else
+            else // quando o audioState for 0 (ficheiro em pausa) o botão irá iniciar
             {
-                audioPlayer.Stop();
-                play = 0;
+                axWindowsMediaPlayer.Ctlcontrols.play();
+                audioState = 1;
             }
         }
 
-        
+        /// <summary>
+        /// salta 10 segundos de reprodução
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSkipTen_Click(object sender, EventArgs e)
+        {
+            // são adicionados 10 segundos ao tempo de reprodução
+            axWindowsMediaPlayer.Ctlcontrols.currentPosition = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition + 10;
+            progressBarTime.Value = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition;
+        }
+
+        /// <summary>
+        /// volta 10 segundos atrás ao tempo de reprodução
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBackTen_Click(object sender, EventArgs e)
+        {
+            // são removidos 10 segundos ao tempo de reprodução
+            axWindowsMediaPlayer.Ctlcontrols.currentPosition = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition - 10;
+            progressBarTime.Value = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition;
+        }
+
+        /// <summary>
+        /// controlo do volume da aplicação
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trackBarVolume_Scroll(object sender, EventArgs e)
+        {
+            // define o volume do player como o valor escolhido na trackBar
+            axWindowsMediaPlayer.settings.volume = trackBarVolume.Value;
+
+            // representação escrita do valor do volume
+            labelVolume.Text = Convert.ToString(trackBarVolume.Value);
+        }
+
+        /// <summary>
+        /// analisa e representa o tempo do áudio e a posição natural em que ele está
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void axWindowsMediaPlayer_StatusChange(object sender, EventArgs e)
+        {
+            // o valor da progressBarTime é igual ao valor da posição atual do player
+            // só há a necessidade de mudar enquanto o vídeo está a tocar ou quando o tempo do vídeo é alterado
+            progressBarTime.Value = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition;
+        }
     }
 }
