@@ -94,7 +94,9 @@ namespace MediaPlayer_07_13
 
             // o player recebe o ficheiro a reproduzir
             axWindowsMediaPlayer.URL = openFileDialog.FileName;
-            //labelTotalTime.Text = axWindowsMediaPlayer.Time
+
+            // inicia o timer para fazer o registo temporal
+            timer.Enabled = true;
         }
 
         /// <summary>
@@ -109,11 +111,17 @@ namespace MediaPlayer_07_13
             {
                 axWindowsMediaPlayer.Ctlcontrols.pause();
                 audioState = 0;
+
+                // desativa o timer para poupar recursos
+                timer.Enabled = false;
             }
             else // quando o audioState for 0 (ficheiro em pausa) o botão irá iniciar
             {
                 axWindowsMediaPlayer.Ctlcontrols.play();
                 audioState = 1;
+
+                //reativa o timer
+                timer.Enabled = true;
             }
         }
 
@@ -127,6 +135,9 @@ namespace MediaPlayer_07_13
             // são adicionados 10 segundos ao tempo de reprodução
             axWindowsMediaPlayer.Ctlcontrols.currentPosition = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition + 10;
             progressBarTime.Value = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition;
+
+            // o valor apresentado no tempo atual também muda
+            labelCurrentTime.Text = timeCount(Convert.ToInt32(axWindowsMediaPlayer.Ctlcontrols.currentPosition));
         }
 
         /// <summary>
@@ -139,6 +150,9 @@ namespace MediaPlayer_07_13
             // são removidos 10 segundos ao tempo de reprodução
             axWindowsMediaPlayer.Ctlcontrols.currentPosition = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition - 10;
             progressBarTime.Value = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition;
+
+            // o valor apresentado no tempo atual também muda
+            labelCurrentTime.Text = timeCount(Convert.ToInt32(axWindowsMediaPlayer.Ctlcontrols.currentPosition));
         }
 
         /// <summary>
@@ -156,15 +170,48 @@ namespace MediaPlayer_07_13
         }
 
         /// <summary>
-        /// analisa e representa o tempo do áudio e a posição natural em que ele está
+        /// converto o tempo de segundos para minutos : segundos
+        /// </summary>
+        /// <param name="secTotal"></param>
+        /// <returns></returns>
+        private string timeCount(int secTotal)
+        {
+            // variáveis
+            int minutes, secEnd;
+
+            minutes = secTotal / 60; // divisão inteira por 60 dá o valor em minutos
+            secEnd = secTotal % 60; // o resto da divisão são quantos segundos a mais tem em relação ao último minuto
+
+            // de maneira a que a disposição seja sempre a mesma é necessário adicionar o 0 das dezenas a valores somente nas unidade (<10)
+            if (secEnd < 10)
+            {
+                return minutes + ":0" + secEnd;
+            }
+            else
+            {
+                return minutes + ":" + secEnd;
+            }
+        }
+
+        /// <summary>
+        /// tamanho da barra de progresso,
+        /// inicia o progresso da barra de tempo,
+        /// valores às labels que transmitem o tempo,
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void axWindowsMediaPlayer_StatusChange(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
+            // definição do tamanho da barra de progresso
+            progressBarTime.Maximum = (int)axWindowsMediaPlayer.currentMedia.duration;
+
             // o valor da progressBarTime é igual ao valor da posição atual do player
             // só há a necessidade de mudar enquanto o vídeo está a tocar ou quando o tempo do vídeo é alterado
             progressBarTime.Value = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition;
+
+            // atribuição de valores às labels de tempo
+            labelTotalTime.Text = timeCount(Convert.ToInt32(axWindowsMediaPlayer.currentMedia.duration));
+            labelCurrentTime.Text = timeCount(Convert.ToInt32(axWindowsMediaPlayer.Ctlcontrols.currentPosition));
         }
     }
 }

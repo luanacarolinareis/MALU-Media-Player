@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAudioPlayer));
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
@@ -50,6 +51,7 @@
             this.labelVolume = new System.Windows.Forms.Label();
             this.labelTotalTime = new System.Windows.Forms.Label();
             this.labelCurrentTime = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             this.menuStripOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
@@ -92,7 +94,7 @@
             this.ToolStripMenuItemAjuda});
             this.menuStripOptions.Location = new System.Drawing.Point(9, 13);
             this.menuStripOptions.Name = "menuStripOptions";
-            this.menuStripOptions.Size = new System.Drawing.Size(271, 30);
+            this.menuStripOptions.Size = new System.Drawing.Size(269, 30);
             this.menuStripOptions.TabIndex = 0;
             this.menuStripOptions.Text = "menuStrip1";
             // 
@@ -108,7 +110,7 @@
             // ToolStripMenuItemSair
             // 
             this.ToolStripMenuItemSair.Name = "ToolStripMenuItemSair";
-            this.ToolStripMenuItemSair.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItemSair.Size = new System.Drawing.Size(195, 26);
             this.ToolStripMenuItemSair.Text = "Sair";
             this.ToolStripMenuItemSair.Click += new System.EventHandler(this.ToolStripMenuItemSair_Click);
             // 
@@ -118,7 +120,7 @@
             this.ToolStripMenuItemTocar,
             this.ToolStripMenuItemAdicionar});
             this.ToolStripMenuItemabrirFicheiro.Name = "ToolStripMenuItemabrirFicheiro";
-            this.ToolStripMenuItemabrirFicheiro.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItemabrirFicheiro.Size = new System.Drawing.Size(195, 26);
             this.ToolStripMenuItemabrirFicheiro.Text = "Abrir Ficheiro";
             // 
             // ToolStripMenuItemTocar
@@ -217,20 +219,19 @@
             // 
             this.progressBarTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarTime.Location = new System.Drawing.Point(56, 379);
+            this.progressBarTime.Location = new System.Drawing.Point(43, 389);
             this.progressBarTime.Name = "progressBarTime";
-            this.progressBarTime.Size = new System.Drawing.Size(492, 36);
+            this.progressBarTime.Size = new System.Drawing.Size(517, 16);
             this.progressBarTime.TabIndex = 9;
             // 
             // axWindowsMediaPlayer
             // 
             this.axWindowsMediaPlayer.Enabled = true;
-            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(134, 137);
+            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(134, 125);
             this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
             this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
             this.axWindowsMediaPlayer.Size = new System.Drawing.Size(334, 180);
             this.axWindowsMediaPlayer.TabIndex = 10;
-            this.axWindowsMediaPlayer.StatusChange += new System.EventHandler(this.axWindowsMediaPlayer_StatusChange);
             // 
             // labelVolume
             // 
@@ -244,20 +245,27 @@
             // labelTotalTime
             // 
             this.labelTotalTime.AutoSize = true;
-            this.labelTotalTime.Location = new System.Drawing.Point(553, 389);
+            this.labelTotalTime.ForeColor = System.Drawing.Color.MediumSpringGreen;
+            this.labelTotalTime.Location = new System.Drawing.Point(566, 389);
             this.labelTotalTime.Name = "labelTotalTime";
-            this.labelTotalTime.Size = new System.Drawing.Size(44, 16);
+            this.labelTotalTime.Size = new System.Drawing.Size(31, 16);
             this.labelTotalTime.TabIndex = 12;
-            this.labelTotalTime.Text = "label1";
+            this.labelTotalTime.Text = "0:00";
             // 
             // labelCurrentTime
             // 
             this.labelCurrentTime.AutoSize = true;
+            this.labelCurrentTime.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.labelCurrentTime.Location = new System.Drawing.Point(6, 389);
             this.labelCurrentTime.Name = "labelCurrentTime";
-            this.labelCurrentTime.Size = new System.Drawing.Size(44, 16);
+            this.labelCurrentTime.Size = new System.Drawing.Size(31, 16);
             this.labelCurrentTime.TabIndex = 13;
-            this.labelCurrentTime.Text = "label1";
+            this.labelCurrentTime.Text = "0:00";
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // FormAudioPlayer
             // 
@@ -313,5 +321,6 @@
         private System.Windows.Forms.Label labelVolume;
         private System.Windows.Forms.Label labelTotalTime;
         private System.Windows.Forms.Label labelCurrentTime;
+        private System.Windows.Forms.Timer timer;
     }
 }
