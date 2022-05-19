@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace MediaPlayer_07_13
 {
     public partial class FormAudioPlayer : Form
     {
+        Thread videoPlayer;
+
         //declaração de variáveis
         int audioState = 1; //(a tocar: play=1 ; parado play=0)
 
@@ -21,7 +24,7 @@ namespace MediaPlayer_07_13
             axWindowsMediaPlayer.uiMode = "none";
         }
 
-        #region geral
+        #region Geral
 
         #region Botões de close, maximize and minimize
 
@@ -72,35 +75,52 @@ namespace MediaPlayer_07_13
         /// <param name="e"></param>
         private void ToolStripMenuItemVideoPlayer_Click(object sender, EventArgs e)
         {
-            FormVideoPlayer formVideoPlayer = new FormVideoPlayer();
-            formVideoPlayer.ShowDialog();
+            this.Close();
+            videoPlayer = new Thread(abrirJanela);
+            videoPlayer.SetApartmentState(ApartmentState.STA);
+            videoPlayer.Start();
         }
-
-
-        #endregion
 
         #endregion
 
         /// <summary>
-        /// selects the file to be played and initiates it in the player
+        /// Abre a janela do FormVideoPlayer
+        /// </summary>
+        /// <param name="obj"></param>
+        private void abrirJanela(object obj)
+        {
+            Application.Run(new FormVideoPlayer());
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Seleciona o ficheiro a ser tocado,
+        /// Inicia o tocador e o timer
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItemTocar_Click(object sender, EventArgs e)
         {
             // abre a janela de pesquisa de ficheiros
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "All Media Files|*.wav;*.avi;*.mp3;*.WAV;*.AVI;*.MP3"
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // o player recebe o ficheiro a reproduzir
+                axWindowsMediaPlayer.URL = openFileDialog.FileName;
 
-            // o player recebe o ficheiro a reproduzir
-            axWindowsMediaPlayer.URL = openFileDialog.FileName;
-
-            // inicia o timer para fazer o registo temporal
-            timer.Enabled = true;
+                // inicia o timer para fazer o registo temporal
+                timer.Enabled = true;
+            }
         }
 
+        #region Botões funcionais
+
         /// <summary>
-        /// inicia e pausa a reprodução
+        /// Inicia e pausa a reprodução
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -109,6 +129,7 @@ namespace MediaPlayer_07_13
             // quando o audioState for 1 (ficheiro em reprodução) o botão irá pausar
             if (audioState == 1)
             {
+                // coloca em pausa, muda audioState para pausa e muda a imagem
                 axWindowsMediaPlayer.Ctlcontrols.pause();
                 audioState = 0;
 
@@ -117,6 +138,7 @@ namespace MediaPlayer_07_13
             }
             else // quando o audioState for 0 (ficheiro em pausa) o botão irá iniciar
             {
+                // inicia a reprodução, muda audioState para reproduzir e muda a imagem
                 axWindowsMediaPlayer.Ctlcontrols.play();
                 audioState = 1;
 
@@ -126,7 +148,7 @@ namespace MediaPlayer_07_13
         }
 
         /// <summary>
-        /// salta 10 segundos de reprodução
+        /// Avança 10 segundos, no tempo reprodução
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -141,7 +163,7 @@ namespace MediaPlayer_07_13
         }
 
         /// <summary>
-        /// volta 10 segundos atrás ao tempo de reprodução
+        /// Volta 10 segundos atrás, no tempo de reprodução
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -156,7 +178,7 @@ namespace MediaPlayer_07_13
         }
 
         /// <summary>
-        /// controlo do volume da aplicação
+        /// Controlo do volume da aplicação
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -166,11 +188,14 @@ namespace MediaPlayer_07_13
             axWindowsMediaPlayer.settings.volume = trackBarVolume.Value;
 
             // representação escrita do valor do volume
-            labelVolume.Text = Convert.ToString(trackBarVolume.Value);
+            labelVolume.Text = Convert.ToString(trackBarVolume.Value) + "%";
         }
+        #endregion
+
+        #region Controlo temporal
 
         /// <summary>
-        /// converto o tempo de segundos para minutos : segundos
+        /// Converte o tempo de segundos para o formato minutos : segundos
         /// </summary>
         /// <param name="secTotal"></param>
         /// <returns></returns>
@@ -194,24 +219,25 @@ namespace MediaPlayer_07_13
         }
 
         /// <summary>
-        /// tamanho da barra de progresso,
-        /// inicia o progresso da barra de tempo,
-        /// valores às labels que transmitem o tempo,
+        /// Tamanho da barra de progresso,
+        /// Inicia o progresso da barra de tempo,
+        /// Valores às labels que transmitem o tempo,
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void timer_Tick(object sender, EventArgs e)
         {
-            // definição do tamanho da barra de progresso
+            // definição do valor máximo da barra de progresso
             progressBarTime.Maximum = (int)axWindowsMediaPlayer.currentMedia.duration;
 
             // o valor da progressBarTime é igual ao valor da posição atual do player
-            // só há a necessidade de mudar enquanto o vídeo está a tocar ou quando o tempo do vídeo é alterado
             progressBarTime.Value = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition;
 
             // atribuição de valores às labels de tempo
             labelTotalTime.Text = timeCount(Convert.ToInt32(axWindowsMediaPlayer.currentMedia.duration));
             labelCurrentTime.Text = timeCount(Convert.ToInt32(axWindowsMediaPlayer.Ctlcontrols.currentPosition));
         }
+
+        #endregion
     }
 }

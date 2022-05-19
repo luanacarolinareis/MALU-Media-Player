@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAudioPlayer));
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelTopo = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.menuStripOptions = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItemFicheiro = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,34 +47,37 @@
             this.btnBackTen = new System.Windows.Forms.Button();
             this.trackBarVolume = new System.Windows.Forms.TrackBar();
             this.progressBarTime = new System.Windows.Forms.ProgressBar();
-            this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.labelVolume = new System.Windows.Forms.Label();
             this.labelTotalTime = new System.Windows.Forms.Label();
             this.labelCurrentTime = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.panel2.SuspendLayout();
+            this.panelLateral = new System.Windows.Forms.Panel();
+            this.panelBaixo = new System.Windows.Forms.Panel();
+            this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.panelTopo.SuspendLayout();
             this.menuStripOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
+            this.panelBaixo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel2
+            // panelTopo
             // 
-            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel2.Controls.Add(this.buttonClose);
-            this.panel2.Controls.Add(this.menuStripOptions);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(609, 58);
-            this.panel2.TabIndex = 3;
+            this.panelTopo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelTopo.Controls.Add(this.buttonClose);
+            this.panelTopo.Controls.Add(this.menuStripOptions);
+            this.panelTopo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTopo.Location = new System.Drawing.Point(0, 0);
+            this.panelTopo.Name = "panelTopo";
+            this.panelTopo.Size = new System.Drawing.Size(724, 52);
+            this.panelTopo.TabIndex = 3;
             // 
             // buttonClose
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose.BackColor = System.Drawing.Color.Transparent;
             this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClose.Location = new System.Drawing.Point(539, 12);
+            this.buttonClose.Location = new System.Drawing.Point(676, 12);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(36, 31);
             this.buttonClose.TabIndex = 1;
@@ -172,11 +175,10 @@
             // 
             this.btnPlayPause.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnPlayPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlayPause.Location = new System.Drawing.Point(96, 421);
+            this.btnPlayPause.Location = new System.Drawing.Point(279, 17);
             this.btnPlayPause.Name = "btnPlayPause";
-            this.btnPlayPause.Size = new System.Drawing.Size(110, 110);
+            this.btnPlayPause.Size = new System.Drawing.Size(50, 50);
             this.btnPlayPause.TabIndex = 4;
-            this.btnPlayPause.Text = "Play\r\nPause";
             this.btnPlayPause.UseVisualStyleBackColor = true;
             this.btnPlayPause.Click += new System.EventHandler(this.btnPlayPause_Click);
             // 
@@ -184,9 +186,9 @@
             // 
             this.btnSkipTen.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSkipTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSkipTen.Location = new System.Drawing.Point(212, 440);
+            this.btnSkipTen.Location = new System.Drawing.Point(335, 27);
             this.btnSkipTen.Name = "btnSkipTen";
-            this.btnSkipTen.Size = new System.Drawing.Size(78, 78);
+            this.btnSkipTen.Size = new System.Drawing.Size(40, 40);
             this.btnSkipTen.TabIndex = 5;
             this.btnSkipTen.Text = "+ 10s";
             this.btnSkipTen.UseVisualStyleBackColor = true;
@@ -196,9 +198,9 @@
             // 
             this.btnBackTen.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnBackTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackTen.Location = new System.Drawing.Point(12, 440);
+            this.btnBackTen.Location = new System.Drawing.Point(233, 27);
             this.btnBackTen.Name = "btnBackTen";
-            this.btnBackTen.Size = new System.Drawing.Size(78, 78);
+            this.btnBackTen.Size = new System.Drawing.Size(40, 40);
             this.btnBackTen.TabIndex = 6;
             this.btnBackTen.Text = "- 10s";
             this.btnBackTen.UseVisualStyleBackColor = true;
@@ -207,7 +209,7 @@
             // trackBarVolume
             // 
             this.trackBarVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBarVolume.Location = new System.Drawing.Point(475, 462);
+            this.trackBarVolume.Location = new System.Drawing.Point(505, 23);
             this.trackBarVolume.Maximum = 100;
             this.trackBarVolume.Name = "trackBarVolume";
             this.trackBarVolume.Size = new System.Drawing.Size(100, 56);
@@ -219,46 +221,44 @@
             // 
             this.progressBarTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarTime.Location = new System.Drawing.Point(43, 389);
+            this.progressBarTime.Location = new System.Drawing.Point(49, 73);
             this.progressBarTime.Name = "progressBarTime";
-            this.progressBarTime.Size = new System.Drawing.Size(517, 16);
+            this.progressBarTime.Size = new System.Drawing.Size(505, 18);
             this.progressBarTime.TabIndex = 9;
-            // 
-            // axWindowsMediaPlayer
-            // 
-            this.axWindowsMediaPlayer.Enabled = true;
-            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(134, 125);
-            this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
-            this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
-            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(334, 180);
-            this.axWindowsMediaPlayer.TabIndex = 10;
             // 
             // labelVolume
             // 
+            this.labelVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelVolume.AutoSize = true;
-            this.labelVolume.Location = new System.Drawing.Point(504, 443);
+            this.labelVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVolume.ForeColor = System.Drawing.Color.MediumSpringGreen;
+            this.labelVolume.Location = new System.Drawing.Point(538, 4);
             this.labelVolume.Name = "labelVolume";
-            this.labelVolume.Size = new System.Drawing.Size(44, 16);
+            this.labelVolume.Size = new System.Drawing.Size(36, 16);
             this.labelVolume.TabIndex = 11;
-            this.labelVolume.Text = "label1";
+            this.labelVolume.Text = "50%";
             // 
             // labelTotalTime
             // 
+            this.labelTotalTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTotalTime.AutoSize = true;
+            this.labelTotalTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalTime.ForeColor = System.Drawing.Color.MediumSpringGreen;
-            this.labelTotalTime.Location = new System.Drawing.Point(566, 389);
+            this.labelTotalTime.Location = new System.Drawing.Point(556, 73);
             this.labelTotalTime.Name = "labelTotalTime";
-            this.labelTotalTime.Size = new System.Drawing.Size(31, 16);
+            this.labelTotalTime.Size = new System.Drawing.Size(45, 20);
             this.labelTotalTime.TabIndex = 12;
             this.labelTotalTime.Text = "0:00";
             // 
             // labelCurrentTime
             // 
+            this.labelCurrentTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelCurrentTime.AutoSize = true;
+            this.labelCurrentTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCurrentTime.ForeColor = System.Drawing.Color.MediumSpringGreen;
-            this.labelCurrentTime.Location = new System.Drawing.Point(6, 389);
+            this.labelCurrentTime.Location = new System.Drawing.Point(3, 71);
             this.labelCurrentTime.Name = "labelCurrentTime";
-            this.labelCurrentTime.Size = new System.Drawing.Size(31, 16);
+            this.labelCurrentTime.Size = new System.Drawing.Size(45, 20);
             this.labelCurrentTime.TabIndex = 13;
             this.labelCurrentTime.Text = "0:00";
             // 
@@ -267,40 +267,70 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // panelLateral
+            // 
+            this.panelLateral.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panelLateral.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLateral.Location = new System.Drawing.Point(0, 52);
+            this.panelLateral.Name = "panelLateral";
+            this.panelLateral.Size = new System.Drawing.Size(116, 489);
+            this.panelLateral.TabIndex = 14;
+            // 
+            // panelBaixo
+            // 
+            this.panelBaixo.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panelBaixo.Controls.Add(this.progressBarTime);
+            this.panelBaixo.Controls.Add(this.btnBackTen);
+            this.panelBaixo.Controls.Add(this.labelVolume);
+            this.panelBaixo.Controls.Add(this.labelTotalTime);
+            this.panelBaixo.Controls.Add(this.labelCurrentTime);
+            this.panelBaixo.Controls.Add(this.trackBarVolume);
+            this.panelBaixo.Controls.Add(this.btnSkipTen);
+            this.panelBaixo.Controls.Add(this.btnPlayPause);
+            this.panelBaixo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBaixo.Location = new System.Drawing.Point(116, 441);
+            this.panelBaixo.Name = "panelBaixo";
+            this.panelBaixo.Size = new System.Drawing.Size(608, 100);
+            this.panelBaixo.TabIndex = 15;
+            // 
+            // axWindowsMediaPlayer
+            // 
+            this.axWindowsMediaPlayer.Enabled = true;
+            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(260, 136);
+            this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
+            this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(334, 180);
+            this.axWindowsMediaPlayer.TabIndex = 10;
+            // 
             // FormAudioPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ClientSize = new System.Drawing.Size(609, 547);
-            this.Controls.Add(this.labelCurrentTime);
-            this.Controls.Add(this.labelTotalTime);
-            this.Controls.Add(this.labelVolume);
+            this.ClientSize = new System.Drawing.Size(724, 541);
+            this.Controls.Add(this.panelBaixo);
+            this.Controls.Add(this.panelLateral);
             this.Controls.Add(this.axWindowsMediaPlayer);
-            this.Controls.Add(this.progressBarTime);
-            this.Controls.Add(this.trackBarVolume);
-            this.Controls.Add(this.btnBackTen);
-            this.Controls.Add(this.btnSkipTen);
-            this.Controls.Add(this.btnPlayPause);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelTopo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormAudioPlayer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAudioPlayer";
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panelTopo.ResumeLayout(false);
+            this.panelTopo.PerformLayout();
             this.menuStripOptions.ResumeLayout(false);
             this.menuStripOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).EndInit();
+            this.panelBaixo.ResumeLayout(false);
+            this.panelBaixo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelTopo;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.MenuStrip menuStripOptions;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFicheiro;
@@ -322,5 +352,7 @@
         private System.Windows.Forms.Label labelTotalTime;
         private System.Windows.Forms.Label labelCurrentTime;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Panel panelLateral;
+        private System.Windows.Forms.Panel panelBaixo;
     }
 }
