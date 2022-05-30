@@ -277,5 +277,8 @@
   <ItemGroup>
     <None Include="Resources\repeat_white.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_app.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

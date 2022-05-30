@@ -34,13 +34,7 @@ namespace MediaPlayer_07_13
 
             // Visibilidade inicial da label de volume
             labelVolume.Visible = false;
-
-            // Localização dos botões
-            btnPlay.Left = (this.Width - btnPlay.Width) / 2;
-            btnJumpBack.Left = (this.Width - btnJumpBack.Width) / 2 - 70;
-            btnJumpForward.Left = (this.Width - btnJumpForward.Width) / 2 + 70;
-
-        }
+        }      
 
         #region Botões de close, maximize and minimize
 
@@ -55,7 +49,7 @@ namespace MediaPlayer_07_13
         }
 
         /// <summary>
-        /// Maximiza o formulário
+        /// "Maximiza" o formulário (sem ocultar a TaskBar do Windows)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -64,7 +58,7 @@ namespace MediaPlayer_07_13
             // Se está normal passa para "maximizada" (WindowState permanece Normal)
             if (maximizeClick == 0)
             {
-                // Não oculta a task bar do Windows
+                // Não oculta a TaskBar do Windows
                 this.Location = new Point(0, 0);
                 this.Height = Screen.PrimaryScreen.WorkingArea.Height;
                 this.Width = Screen.PrimaryScreen.WorkingArea.Width;
@@ -132,7 +126,10 @@ namespace MediaPlayer_07_13
         /// <param name="e"></param>
         private void ToolStripMenuItemAudioPlayer_Click(object sender, EventArgs e)
         {
+            // Fecha o formulário atual
             this.Close();
+
+            // Abre o formulário de áudio (configurações da Thread)
             audioPlayer = new Thread(abrirJanela);
             audioPlayer.SetApartmentState(ApartmentState.STA);
             audioPlayer.Start();
@@ -143,7 +140,7 @@ namespace MediaPlayer_07_13
         #region Escolha do ficheiro
 
         /// <summary>
-        /// Escolha do ficheiro e filtro de extensões (.mp4 | .mov | .wmv | .avi)
+        /// Escolha do ficheiro e filtro de extensões (.mp4 | .mov | .wmv | .avi | .mkv)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -211,6 +208,8 @@ namespace MediaPlayer_07_13
             {
                 // São adicionados 10 segundos ao tempo de reprodução
                 axWindowsMediaPlayer1.Ctlcontrols.currentPosition = (int)axWindowsMediaPlayer1.Ctlcontrols.currentPosition + 10;
+
+                // A bunifuProgressBar recebe o novo valor
                 bunifuProgressBar.Value = (int)axWindowsMediaPlayer1.Ctlcontrols.currentPosition;
 
                 // O valor apresentado no tempo atual também muda
@@ -229,6 +228,8 @@ namespace MediaPlayer_07_13
             {
                 // São removidos 10 segundos ao tempo de reprodução
                 axWindowsMediaPlayer1.Ctlcontrols.currentPosition = (int)axWindowsMediaPlayer1.Ctlcontrols.currentPosition - 10;
+
+                // A bunifuProgressBar recebe o novo valor
                 bunifuProgressBar.Value = (int)axWindowsMediaPlayer1.Ctlcontrols.currentPosition;
 
                 // O valor apresentado no tempo atual também muda
@@ -345,22 +346,142 @@ namespace MediaPlayer_07_13
         /// <param name="e"></param>
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
+            // Se o controlador "fullScreenClick" for 0, é porque o vídeo está normal e deve ser colocado em full screen
+            if (fullScreenClick == 0)
+            {
+                this.WindowState = FormWindowState.Maximized;
+                panel2.Visible = false;
+                fullScreenClick = 1;
+            }
+
+            // Se o controlador "fullScreenClick" for 1, é porque o vídeo está em full screen e deve ser colocado em modo normal
+            else if (fullScreenClick == 1)
+            {
+                this.WindowState = FormWindowState.Normal;
+                panel2.Visible = true;
+                fullScreenClick = 0;
+            }
+        }
+
+        /// <summary>
+        /// Coloca o vídeo em modo "Picture-in-picture"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPictureInPicture_Click(object sender, EventArgs e)
+        {
             if (axWindowsMediaPlayer1.URL != "")
             {
-                // Se o controlador "fullScreenClick" for 0, é porque o vídeo está normal e deve ser colocado em full screen
-                if (fullScreenClick == 0)
+                // Se o controlador "pictureInPictureClick" for 0, é porque o vídeo deve ser aberto em modo "Picture-in-picture"
+                if (pictureInPictureClick == 0)
                 {
-                    this.WindowState = FormWindowState.Maximized;
-                    fullScreenClick = 1;
-                }
+                    // Se o ecrã estiver em fullScreen
+                    if (fullScreenClick == 1)
+                    {
+                        // Voltar a colocar o painel do topo visível
+                        panel2.Visible = true;
 
-                // Se o controlador "fullScreenClick" for 1, é porque o vídeo está em full screen e deve ser colocado em modo normal
-                else if (fullScreenClick == 1)
-                {
-                    this.WindowState = FormWindowState.Normal;
-                    fullScreenClick = 0;
+                        // O estado do form passa para normal
+                        this.WindowState = FormWindowState.Normal;
+                    }
+
+                    // Definição de sobreposição
+                    this.TopMost = true;
+
+                    // Definições de tamanho e de posição do form
+                    this.Height = 196;
+                    this.Width = 390;
+                    this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width - 10,
+                                  Screen.PrimaryScreen.WorkingArea.Height - this.Height - 10);
+
+                    // Coloca invisíveis os paineis que não são necessários neste modo
+                    panel3.Visible = false;
+                    menuStripOptions.Visible = false;
+                    btnClose.Visible = false;
+                    btnMaximize.Visible = false;
+                    btnMinimize.Visible = false;
+
+                    // Redefine o tamanho do painel do topo (diminui-lhe a altura)
+                    panel2.Height = 25;
+
+                    // O botão de saída do modo "Picture-in-picture" passa a estar visível
+                    btnExitPIP.Visible = true;
+
+                    // Alteração do valor do controlador para 1
+                    pictureInPictureClick = 1;
                 }
             }
+        }
+
+        /// <summary>
+        /// Saída do modo "Picture-in-picture"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExitPIP_Click(object sender, EventArgs e)
+        {
+            // Se estiver "maximizado" mas não em fullScreen
+            if (maximizeClick == 1 && fullScreenClick == 0)
+            {
+                // Quando se sai do modo "Picture-in-picture" volta ao estado inicial ("maximizado")
+                this.Location = new Point(0, 0);
+                this.Height = Screen.PrimaryScreen.WorkingArea.Height;
+                this.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            }
+
+            // Se estiver "maximizado" e em fullScreen
+            else if (maximizeClick == 1 && fullScreenClick == 1)
+            {
+                // Quando se sai do modo "Picture-in-picture" volta ao estado inicial (fullScreen)
+                this.Location = new Point(0, 0);
+                this.Height = Screen.PrimaryScreen.WorkingArea.Height;
+                this.Width = Screen.PrimaryScreen.WorkingArea.Width;
+                this.WindowState = FormWindowState.Maximized;
+
+                // O painel superior volta a ficar invisível
+                panel2.Visible = false;
+            }
+
+            // Se não estiver "maximizado" mas estiver em fullScreen
+            else if (maximizeClick == 0 && fullScreenClick == 1)
+            {
+                // Quando se sai do modo "Picture-in-picture" volta ao estado inicial (fullScreen)
+                this.Height = 567;
+                this.Width = 1042;
+                this.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+                          (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
+                this.WindowState = FormWindowState.Maximized;
+                panel2.Visible = false;
+            }
+
+            // Se não estiver maximizado nem em fullScreen
+            else if (maximizeClick == 0 && fullScreenClick == 0)
+            {
+                // Quando se sai do modo "Picture-in-picture" volta ao estado inicial (normal)
+                this.Height = 567;
+                this.Width = 1042;
+                this.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+                          (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
+            }
+
+            // Alteração do valor do controlador para 0
+            pictureInPictureClick = 0;
+
+            // Definição de sobreposição
+            this.TopMost = false;
+
+            // Os painéis necessários voltam a ficar visíveis
+            panel3.Visible = true;
+            menuStripOptions.Visible = true;
+            btnClose.Visible = true;
+            btnMaximize.Visible = true;
+            btnMinimize.Visible = true;
+
+            // Alteração do tamanho do painel (regresso ao seu valor inicial)
+            panel2.Height = 41;
+
+            // O botão de saída do modo "Picture-in-Picture" deixa de estar visível
+            btnExitPIP.Visible = false;
         }
 
         #endregion
@@ -382,6 +503,7 @@ namespace MediaPlayer_07_13
                 // Atribuição de valor à label de tempo total
                 labelTotalTime.Text = axWindowsMediaPlayer1.currentMedia.durationString.ToString();
 
+                // Se o vídeo está em reprodução
                 if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsPlaying)
                 {
                     // O valor da progressBar é igual ao valor da posição atual do player
@@ -480,47 +602,19 @@ namespace MediaPlayer_07_13
             }
         }
 
-        #endregion
-
-
         /// <summary>
-        /// Scrool da barra de progresso (!!!)
+        /// Scrool da barra de progresso
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void bunifuProgressBar_MouseUp(object sender, MouseEventArgs e)
         {
+            // O vídeo vai para a posição definida na bunifuProgressBar pelo utilizador
             axWindowsMediaPlayer1.Ctlcontrols.currentPosition = bunifuProgressBar.Value;
         }
 
-        /// <summary>
-        /// Coloca o vídeo em modo picture in picture (!!!)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnPictureInPicture_Click(object sender, EventArgs e)
-        {
-            if (axWindowsMediaPlayer1.URL != "")
-            {
-                // Se o controlador "pictureInPictureClick" for 0, é porque o vídeo deve ser aberto em modo "Picture-in-picture"
-                if (pictureInPictureClick == 0)
-                {
-                    // Definições de tamanho e de posição do form
-                    this.TopMost = true;
-                    this.Height = 196;
-                    this.Width = 390;
-                    this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width - 10,
-                                  Screen.PrimaryScreen.WorkingArea.Height - this.Height - 10);
+        #endregion
 
-                    // Remove os paineis que não são necessários neste modo
-                    panel3.Dispose();
-                    panel2.Dispose();
-
-                    // Alteração do valor do controlador para 1
-                    pictureInPictureClick = 1;
-                }
-            }
-        }
     }
 
     #region ProfessionalColorTable para o "MenuStripOptions"
@@ -606,8 +700,7 @@ namespace MediaPlayer_07_13
                 return Color.MediumOrchid;
             }
         }
-    } 
+    }
 
     #endregion
-
 }
