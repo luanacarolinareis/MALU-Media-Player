@@ -236,5 +236,38 @@
   <ItemGroup>
     <None Include="Resources\play-button.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu_26px_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repeat_32px_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\replay_10_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward_10_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mute_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sound_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repeat_white_audio.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
