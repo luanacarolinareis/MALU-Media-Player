@@ -269,5 +269,8 @@
   <ItemGroup>
     <None Include="Resources\repeat_white_audio.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AudioGif.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

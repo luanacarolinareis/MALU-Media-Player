@@ -11,7 +11,6 @@ using System.Threading;
 
 namespace MediaPlayer_07_13
 {
-    // ADICIONAR ITEMS A ARRAYS JÁ COM ITEMS SEM APAGAR OS ANTIGOS
     public partial class FormAudioPlayer : Form
     {
         Thread videoPlayer;
@@ -47,8 +46,9 @@ namespace MediaPlayer_07_13
         /// <param name="e"></param>
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            timer.Stop();
             axWindowsMediaPlayer.Ctlcontrols.stop();
+            this.Close();
         }
 
         #endregion
@@ -105,6 +105,24 @@ namespace MediaPlayer_07_13
         }
 
         #endregion
+
+        /// <summary>
+        /// Detetor da mudança de estado da mídia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void axWindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            // condição responsável pela reprodução do Gif visualizador de áudio
+            if (e.newState == 3) // áudio a tocar; o gif movimenta
+            {
+                pictureBoxAudioGif.Enabled = true;
+            }
+            else // áudio não a tocar, não movimenta
+            {
+                pictureBoxAudioGif.Enabled = false;
+            }
+        }
 
         /// <summary>
         /// Adiciona um ficheiro à playlist,
@@ -192,6 +210,9 @@ namespace MediaPlayer_07_13
         /// <param name="e"></param>
         private void listBoxPlaylist_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // faz aparecer o Gif visualizador de áudio
+            pictureBoxAudioGif.Visible = true;
+
             // para o timer para não serem requisitadas coisas do áudio atual enquanto ele não está iniciado
             timer.Enabled = false;
 
@@ -224,23 +245,23 @@ namespace MediaPlayer_07_13
                 // quando o audioState for 0 (ficheiro em reprodução) o botão irá pausar
                 if (audioState == 0)
                 {
-                    // coloca em pausa, muda audioState para pausa e muda a imagem
-                    axWindowsMediaPlayer.Ctlcontrols.pause();
-                    audioState = 1;
-                    bunifuImgBtnPP.Image = Properties.Resources.play_audio;
-
                     // desativa o timer para poupar recursos
                     timer.Enabled = false;
+
+                    // coloca em pausa, muda audioState para pausa e muda a imagem
+                    bunifuImgBtnPP.Image = Properties.Resources.play_audio;
+                    axWindowsMediaPlayer.Ctlcontrols.pause();
+                    audioState = 1;
                 }
                 else // quando o audioState for 1 (ficheiro em pausa) o botão irá iniciar
                 {
+                    // reativa o timer
+                    timer.Enabled = true;
+
                     // inicia a reprodução, muda audioState para reproduzir e muda a imagem
+                    bunifuImgBtnPP.Image = Properties.Resources.pause_audio;
                     axWindowsMediaPlayer.Ctlcontrols.play();
                     audioState = 0;
-                    bunifuImgBtnPP.Image = Properties.Resources.pause_audio;
-
-                    //reativa o timer
-                    timer.Enabled = true;
                 }
             }
         }
@@ -255,6 +276,7 @@ namespace MediaPlayer_07_13
             // só executa a ação se já houver áudio a ser tocado
             if (axWindowsMediaPlayer.URL != "")
             {
+                // se ainda houver tempo de vídeo para avançar 10 segundos
                 if ((int)axWindowsMediaPlayer.currentMedia.duration - (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition > 10)
                 {
                     // são adicionados 10 segundos ao tempo de reprodução
@@ -264,7 +286,7 @@ namespace MediaPlayer_07_13
                     bunifuProgressBar.Value = (int)axWindowsMediaPlayer.Ctlcontrols.currentPosition;
                     labelCurrentTime.Text = axWindowsMediaPlayer.Ctlcontrols.currentPositionString;
                 }
-                else
+                else // senão passa para o próximo na playlist
                 {
                     bunifuImgBtnNext.PerformClick();
                 }
@@ -331,7 +353,7 @@ namespace MediaPlayer_07_13
                 if (listBoxPlaylist.SelectedIndex > 0)
                 {
                     timer.Enabled = false; // evita erros vindos de o timer iniciar sem o vídeo carregar
-                    listBoxPlaylist.SelectedIndex--;
+                    listBoxPlaylist.SelectedIndex--; // o index do item retrocede 1
                 }
             }
         }
@@ -346,15 +368,31 @@ namespace MediaPlayer_07_13
             // se a playlist estiver a aparecer, o botão faz desaparecer
             if (listBoxPlaylist.Visible == true)
             {
+                // listbox deixa de ser vísivel
                 listBoxPlaylist.Visible = false;
+
+                // diminui o tamanho do panel que a contém
                 panelLateral.Width = 41;
+
+                // diminui o tamanho do formulário
                 this.Width = 477;
+
+                // deslocação do Gif visualizador de áudio
+                pictureBoxAudioGif.Location = new Point(41, 45);
             }
             else // senão,a playlist está escondida, e o botão fá-la aparecer
             {
+                // listbox passa a vísivel
                 listBoxPlaylist.Visible = true;
+
+                // aumenta o tamanho do panel que a contém
                 panelLateral.Width = 180;
+
+                // aumenta o tamanho do formulário
                 this.Width = 616;
+
+                // deslocação do Gif visualizador de áudio
+                pictureBoxAudioGif.Location = new Point(180, 45);
             }
         }
 
@@ -367,14 +405,14 @@ namespace MediaPlayer_07_13
         {
             if (loopState == 0) // passa de não haver loop para fazer loop da música
             {
-                loopState = 1;
+                loopState = 1; // em loop
 
                 // imagem de loop ativado
                 bunifuImgBtnLoop.Image = Properties.Resources.repeat_white_audio;
             }
             else if (loopState == 1) // passa de fazer loop da playlist para não haver loop
             {
-                loopState = 0;
+                loopState = 0; // sem loop
 
                 // imagem de loop desativado
                 bunifuImgBtnLoop.Image = Properties.Resources.repeat_32px_audio;
@@ -397,14 +435,42 @@ namespace MediaPlayer_07_13
 
             // representação escrita do valor do volume
             labelVolume.Text = bunifuVolumeBar.Value + "%";
+
+            // se o valor passar a 0, faz o mesmo que mutar
+            if (bunifuVolumeBar.Value == 0)
+            {
+                // imagem de mute
+                bunifuImgBtnVolume.Image = Properties.Resources.mute_audio;
+
+                // estado de mute 1 (está mutado)
+                muteState = 1;
+            }
+            else // senão, retira o que o mute faz
+            {
+                // imagem de som
+                bunifuImgBtnVolume.Image = Properties.Resources.sound_audio;
+
+                // estado de mute 0 (não está mutado)
+                muteState = 0;
+            }
         }
 
+        /// <summary>
+        /// Label de volume aparece enquanto está a ser usada a barra 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bunifuVolumeBar_MouseDown(object sender, MouseEventArgs e)
         {
             // visibilidade da label de volume
             labelVolume.Visible = true;
         }
 
+        /// <summary>
+        /// Label de volume desaparece quando a barra deixa de ser usada
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bunifuVolumeBar_MouseUp(object sender, MouseEventArgs e)
         {
             // visibilidade da label de volume
@@ -434,10 +500,10 @@ namespace MediaPlayer_07_13
             else // mutado, será desmutado
             {
                 // define o volume do player como o valor escolhido na trackBar
-                axWindowsMediaPlayer.settings.volume = bunifuVolumeBar.Value;
+                axWindowsMediaPlayer.settings.volume = 50;
 
                 // representação escrita do valor do volume
-                labelVolume.Text = bunifuVolumeBar.Value + "%";
+                labelVolume.Text = "50%";
 
                 // imagem de som
                 bunifuImgBtnVolume.Image = Properties.Resources.sound_audio;

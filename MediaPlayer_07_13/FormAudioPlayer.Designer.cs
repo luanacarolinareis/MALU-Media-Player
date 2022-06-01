@@ -60,11 +60,13 @@
             this.bunifuImgBtnPrevious = new Bunifu.UI.WinForms.BunifuImageButton();
             this.bunifuImgBtnNext = new Bunifu.UI.WinForms.BunifuImageButton();
             this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.pictureBoxAudioGif = new System.Windows.Forms.PictureBox();
             this.panelTopo.SuspendLayout();
             this.menuStripOptions.SuspendLayout();
             this.panelLateral.SuspendLayout();
             this.panelBaixo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAudioGif)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTopo
@@ -535,7 +537,7 @@
             this.bunifuImgBtnPP.Location = new System.Drawing.Point(217, 35);
             this.bunifuImgBtnPP.Name = "bunifuImgBtnPP";
             this.bunifuImgBtnPP.Rotation = 0;
-            this.bunifuImgBtnPP.ShowActiveImage = true;
+            this.bunifuImgBtnPP.ShowActiveImage = false;
             this.bunifuImgBtnPP.ShowCursorChanges = true;
             this.bunifuImgBtnPP.ShowImageBorders = true;
             this.bunifuImgBtnPP.ShowSizeMarkers = false;
@@ -669,9 +671,22 @@
             this.axWindowsMediaPlayer.Location = new System.Drawing.Point(55, 52);
             this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
             this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
-            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(76, 67);
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(61, 53);
             this.axWindowsMediaPlayer.TabIndex = 10;
             this.axWindowsMediaPlayer.Visible = false;
+            this.axWindowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.axWindowsMediaPlayer_PlayStateChange);
+            // 
+            // pictureBoxAudioGif
+            // 
+            this.pictureBoxAudioGif.Enabled = false;
+            this.pictureBoxAudioGif.Image = global::MediaPlayer_07_13.Properties.Resources.AudioGif;
+            this.pictureBoxAudioGif.Location = new System.Drawing.Point(55, 55);
+            this.pictureBoxAudioGif.Name = "pictureBoxAudioGif";
+            this.pictureBoxAudioGif.Size = new System.Drawing.Size(581, 352);
+            this.pictureBoxAudioGif.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxAudioGif.TabIndex = 16;
+            this.pictureBoxAudioGif.TabStop = false;
+            this.pictureBoxAudioGif.Visible = false;
             // 
             // FormAudioPlayer
             // 
@@ -679,6 +694,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(636, 506);
+            this.Controls.Add(this.pictureBoxAudioGif);
             this.Controls.Add(this.panelBaixo);
             this.Controls.Add(this.panelLateral);
             this.Controls.Add(this.axWindowsMediaPlayer);
@@ -696,6 +712,7 @@
             this.panelBaixo.ResumeLayout(false);
             this.panelBaixo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAudioGif)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -732,5 +749,6 @@
         private Bunifu.UI.WinForms.BunifuImageButton bunifuImgBtnPlaylist;
         private Bunifu.UI.WinForms.BunifuImageButton bunifuImgBtnVolume;
         private Bunifu.UI.WinForms.BunifuImageButton bunifuImgBtnLoop;
+        private System.Windows.Forms.PictureBox pictureBoxAudioGif;
     }
 }
