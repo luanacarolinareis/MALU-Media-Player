@@ -526,8 +526,6 @@ namespace MediaPlayer_07_13
             }
         }
 
-        
-
         #endregion
 
         #region Controlo temporal
@@ -556,7 +554,6 @@ namespace MediaPlayer_07_13
             {
                 bunifuImgBtnNext.PerformClick();
             }
-            
         }
 
         #endregion
