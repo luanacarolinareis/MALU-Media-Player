@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAudioPlayer));
             this.panelTopo = new System.Windows.Forms.Panel();
-            this.buttonClose = new System.Windows.Forms.Button();
             this.menuStripOptions = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItemFicheiro = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemabrirFicheiro = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,9 +46,10 @@
             this.labelCurrentTime = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.panelLateral = new System.Windows.Forms.Panel();
-            this.bunifuImgBtnPlaylist = new Bunifu.UI.WinForms.BunifuImageButton();
             this.listBoxPlaylist = new System.Windows.Forms.ListBox();
             this.panelBaixo = new System.Windows.Forms.Panel();
+            this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.pictureBoxAudioGif = new System.Windows.Forms.PictureBox();
             this.bunifuImgBtnLoop = new Bunifu.UI.WinForms.BunifuImageButton();
             this.bunifuImgBtnVolume = new Bunifu.UI.WinForms.BunifuImageButton();
             this.bunifuProgressBar = new Bunifu.UI.WinForms.BunifuHSlider();
@@ -59,8 +59,9 @@
             this.bunifuVolumeBar = new Bunifu.UI.WinForms.BunifuHScrollBar();
             this.bunifuImgBtnPrevious = new Bunifu.UI.WinForms.BunifuImageButton();
             this.bunifuImgBtnNext = new Bunifu.UI.WinForms.BunifuImageButton();
-            this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            this.pictureBoxAudioGif = new System.Windows.Forms.PictureBox();
+            this.bunifuImgBtnPlaylist = new Bunifu.UI.WinForms.BunifuImageButton();
+            this.bunifuImgBtnMinimize = new Bunifu.UI.WinForms.BunifuImageButton();
+            this.bunifuImgBtnClose = new Bunifu.UI.WinForms.BunifuImageButton();
             this.panelTopo.SuspendLayout();
             this.menuStripOptions.SuspendLayout();
             this.panelLateral.SuspendLayout();
@@ -72,28 +73,14 @@
             // panelTopo
             // 
             this.panelTopo.BackColor = System.Drawing.Color.Black;
-            this.panelTopo.Controls.Add(this.buttonClose);
+            this.panelTopo.Controls.Add(this.bunifuImgBtnMinimize);
+            this.panelTopo.Controls.Add(this.bunifuImgBtnClose);
             this.panelTopo.Controls.Add(this.menuStripOptions);
             this.panelTopo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTopo.Location = new System.Drawing.Point(0, 0);
             this.panelTopo.Name = "panelTopo";
             this.panelTopo.Size = new System.Drawing.Size(636, 52);
             this.panelTopo.TabIndex = 3;
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClose.BackColor = System.Drawing.Color.Black;
-            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClose.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.buttonClose.Location = new System.Drawing.Point(588, 12);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(36, 31);
-            this.buttonClose.TabIndex = 1;
-            this.buttonClose.Text = "X";
-            this.buttonClose.UseVisualStyleBackColor = false;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
             // menuStripOptions
             // 
@@ -107,7 +94,7 @@
             this.ToolStripMenuItemAjuda});
             this.menuStripOptions.Location = new System.Drawing.Point(9, 13);
             this.menuStripOptions.Name = "menuStripOptions";
-            this.menuStripOptions.Size = new System.Drawing.Size(269, 30);
+            this.menuStripOptions.Size = new System.Drawing.Size(271, 30);
             this.menuStripOptions.TabIndex = 0;
             this.menuStripOptions.Text = "menuStrip1";
             // 
@@ -203,7 +190,7 @@
             this.labelVolume.AutoSize = true;
             this.labelVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVolume.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.labelVolume.Location = new System.Drawing.Point(499, 35);
+            this.labelVolume.Location = new System.Drawing.Point(499, 55);
             this.labelVolume.Name = "labelVolume";
             this.labelVolume.Size = new System.Drawing.Size(45, 20);
             this.labelVolume.TabIndex = 11;
@@ -216,7 +203,7 @@
             this.labelTotalTime.AutoSize = true;
             this.labelTotalTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalTime.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.labelTotalTime.Location = new System.Drawing.Point(514, 10);
+            this.labelTotalTime.Location = new System.Drawing.Point(499, 3);
             this.labelTotalTime.Name = "labelTotalTime";
             this.labelTotalTime.Size = new System.Drawing.Size(55, 20);
             this.labelTotalTime.TabIndex = 12;
@@ -228,7 +215,7 @@
             this.labelCurrentTime.AutoSize = true;
             this.labelCurrentTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCurrentTime.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.labelCurrentTime.Location = new System.Drawing.Point(6, 10);
+            this.labelCurrentTime.Location = new System.Drawing.Point(27, 3);
             this.labelCurrentTime.Name = "labelCurrentTime";
             this.labelCurrentTime.Size = new System.Drawing.Size(55, 20);
             this.labelCurrentTime.TabIndex = 13;
@@ -249,41 +236,6 @@
             this.panelLateral.Name = "panelLateral";
             this.panelLateral.Size = new System.Drawing.Size(55, 454);
             this.panelLateral.TabIndex = 14;
-            // 
-            // bunifuImgBtnPlaylist
-            // 
-            this.bunifuImgBtnPlaylist.ActiveImage = null;
-            this.bunifuImgBtnPlaylist.AllowAnimations = true;
-            this.bunifuImgBtnPlaylist.AllowBuffering = false;
-            this.bunifuImgBtnPlaylist.AllowToggling = false;
-            this.bunifuImgBtnPlaylist.AllowZooming = true;
-            this.bunifuImgBtnPlaylist.AllowZoomingOnFocus = false;
-            this.bunifuImgBtnPlaylist.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuImgBtnPlaylist.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.bunifuImgBtnPlaylist.ErrorImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnPlaylist.ErrorImage")));
-            this.bunifuImgBtnPlaylist.FadeWhenInactive = false;
-            this.bunifuImgBtnPlaylist.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
-            this.bunifuImgBtnPlaylist.Image = global::MediaPlayer_07_13.Properties.Resources.Menu_26px_audio;
-            this.bunifuImgBtnPlaylist.ImageActive = null;
-            this.bunifuImgBtnPlaylist.ImageLocation = null;
-            this.bunifuImgBtnPlaylist.ImageMargin = 20;
-            this.bunifuImgBtnPlaylist.ImageSize = new System.Drawing.Size(30, 30);
-            this.bunifuImgBtnPlaylist.ImageZoomSize = new System.Drawing.Size(50, 50);
-            this.bunifuImgBtnPlaylist.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnPlaylist.InitialImage")));
-            this.bunifuImgBtnPlaylist.Location = new System.Drawing.Point(3, 3);
-            this.bunifuImgBtnPlaylist.Name = "bunifuImgBtnPlaylist";
-            this.bunifuImgBtnPlaylist.Rotation = 0;
-            this.bunifuImgBtnPlaylist.ShowActiveImage = true;
-            this.bunifuImgBtnPlaylist.ShowCursorChanges = true;
-            this.bunifuImgBtnPlaylist.ShowImageBorders = true;
-            this.bunifuImgBtnPlaylist.ShowSizeMarkers = false;
-            this.bunifuImgBtnPlaylist.Size = new System.Drawing.Size(50, 50);
-            this.bunifuImgBtnPlaylist.TabIndex = 16;
-            this.bunifuImgBtnPlaylist.ToolTipText = "";
-            this.bunifuImgBtnPlaylist.WaitOnLoad = false;
-            this.bunifuImgBtnPlaylist.Zoom = 20;
-            this.bunifuImgBtnPlaylist.ZoomSpeed = 10;
-            this.bunifuImgBtnPlaylist.Click += new System.EventHandler(this.bunifuImgBtnPlaylist_Click);
             // 
             // listBoxPlaylist
             // 
@@ -314,10 +266,34 @@
             this.panelBaixo.Controls.Add(this.labelTotalTime);
             this.panelBaixo.Controls.Add(this.labelCurrentTime);
             this.panelBaixo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBaixo.Location = new System.Drawing.Point(55, 400);
+            this.panelBaixo.Location = new System.Drawing.Point(55, 380);
             this.panelBaixo.Name = "panelBaixo";
-            this.panelBaixo.Size = new System.Drawing.Size(581, 106);
+            this.panelBaixo.Size = new System.Drawing.Size(581, 126);
             this.panelBaixo.TabIndex = 15;
+            // 
+            // axWindowsMediaPlayer
+            // 
+            this.axWindowsMediaPlayer.Enabled = true;
+            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(55, 52);
+            this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
+            this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(61, 53);
+            this.axWindowsMediaPlayer.TabIndex = 10;
+            this.axWindowsMediaPlayer.Visible = false;
+            this.axWindowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.axWindowsMediaPlayer_PlayStateChange);
+            // 
+            // pictureBoxAudioGif
+            // 
+            this.pictureBoxAudioGif.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxAudioGif.Enabled = false;
+            this.pictureBoxAudioGif.Image = global::MediaPlayer_07_13.Properties.Resources.AudioGif;
+            this.pictureBoxAudioGif.Location = new System.Drawing.Point(55, 52);
+            this.pictureBoxAudioGif.Name = "pictureBoxAudioGif";
+            this.pictureBoxAudioGif.Size = new System.Drawing.Size(581, 328);
+            this.pictureBoxAudioGif.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxAudioGif.TabIndex = 16;
+            this.pictureBoxAudioGif.TabStop = false;
+            this.pictureBoxAudioGif.Visible = false;
             // 
             // bunifuImgBtnLoop
             // 
@@ -340,7 +316,7 @@
             this.bunifuImgBtnLoop.ImageSize = new System.Drawing.Size(40, 40);
             this.bunifuImgBtnLoop.ImageZoomSize = new System.Drawing.Size(50, 50);
             this.bunifuImgBtnLoop.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnLoop.InitialImage")));
-            this.bunifuImgBtnLoop.Location = new System.Drawing.Point(11, 35);
+            this.bunifuImgBtnLoop.Location = new System.Drawing.Point(11, 55);
             this.bunifuImgBtnLoop.Name = "bunifuImgBtnLoop";
             this.bunifuImgBtnLoop.Rotation = 0;
             this.bunifuImgBtnLoop.ShowActiveImage = true;
@@ -376,7 +352,7 @@
             this.bunifuImgBtnVolume.ImageSize = new System.Drawing.Size(30, 30);
             this.bunifuImgBtnVolume.ImageZoomSize = new System.Drawing.Size(40, 40);
             this.bunifuImgBtnVolume.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnVolume.InitialImage")));
-            this.bunifuImgBtnVolume.Location = new System.Drawing.Point(421, 45);
+            this.bunifuImgBtnVolume.Location = new System.Drawing.Point(421, 65);
             this.bunifuImgBtnVolume.Name = "bunifuImgBtnVolume";
             this.bunifuImgBtnVolume.Rotation = 0;
             this.bunifuImgBtnVolume.ShowActiveImage = true;
@@ -414,7 +390,7 @@
             this.bunifuProgressBar.DurationBeforeShrink = 2000;
             this.bunifuProgressBar.ElapsedColor = System.Drawing.Color.MediumOrchid;
             this.bunifuProgressBar.LargeChange = 10;
-            this.bunifuProgressBar.Location = new System.Drawing.Point(68, 5);
+            this.bunifuProgressBar.Location = new System.Drawing.Point(11, 25);
             this.bunifuProgressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bunifuProgressBar.Maximum = 100;
             this.bunifuProgressBar.Minimum = 0;
@@ -427,7 +403,7 @@
             this.bunifuProgressBar.ScrollBarBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.bunifuProgressBar.ScrollBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.bunifuProgressBar.ShrinkSizeLimit = 3;
-            this.bunifuProgressBar.Size = new System.Drawing.Size(439, 31);
+            this.bunifuProgressBar.Size = new System.Drawing.Size(557, 31);
             this.bunifuProgressBar.SliderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.bunifuProgressBar.SliderStyle = Bunifu.UI.WinForms.BunifuHSlider.SliderStyles.Thin;
             this.bunifuProgressBar.SliderThumbStyle = Utilities.BunifuSlider.BunifuHScrollBar.SliderThumbStyles.Circular;
@@ -435,7 +411,7 @@
             this.bunifuProgressBar.TabIndex = 21;
             this.bunifuProgressBar.ThumbColor = System.Drawing.Color.DodgerBlue;
             this.bunifuProgressBar.ThumbFillColor = System.Drawing.SystemColors.Control;
-            this.bunifuProgressBar.ThumbLength = 43;
+            this.bunifuProgressBar.ThumbLength = 55;
             this.bunifuProgressBar.ThumbMargin = 1;
             this.bunifuProgressBar.ThumbSize = Bunifu.UI.WinForms.BunifuHSlider.ThumbSizes.Medium;
             this.bunifuProgressBar.ThumbStyle = Bunifu.UI.WinForms.BunifuHSlider.ThumbStyles.Outline;
@@ -462,7 +438,7 @@
             this.bunifuImgBtnSkipTen.ImageSize = new System.Drawing.Size(40, 40);
             this.bunifuImgBtnSkipTen.ImageZoomSize = new System.Drawing.Size(50, 50);
             this.bunifuImgBtnSkipTen.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnSkipTen.InitialImage")));
-            this.bunifuImgBtnSkipTen.Location = new System.Drawing.Point(273, 35);
+            this.bunifuImgBtnSkipTen.Location = new System.Drawing.Point(273, 55);
             this.bunifuImgBtnSkipTen.Name = "bunifuImgBtnSkipTen";
             this.bunifuImgBtnSkipTen.Rotation = 0;
             this.bunifuImgBtnSkipTen.ShowActiveImage = true;
@@ -498,7 +474,7 @@
             this.bunifuImgBtnBackTen.ImageSize = new System.Drawing.Size(40, 40);
             this.bunifuImgBtnBackTen.ImageZoomSize = new System.Drawing.Size(50, 50);
             this.bunifuImgBtnBackTen.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnBackTen.InitialImage")));
-            this.bunifuImgBtnBackTen.Location = new System.Drawing.Point(161, 35);
+            this.bunifuImgBtnBackTen.Location = new System.Drawing.Point(161, 55);
             this.bunifuImgBtnBackTen.Name = "bunifuImgBtnBackTen";
             this.bunifuImgBtnBackTen.Rotation = 0;
             this.bunifuImgBtnBackTen.ShowActiveImage = true;
@@ -534,7 +510,7 @@
             this.bunifuImgBtnPP.ImageSize = new System.Drawing.Size(40, 40);
             this.bunifuImgBtnPP.ImageZoomSize = new System.Drawing.Size(50, 50);
             this.bunifuImgBtnPP.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnPP.InitialImage")));
-            this.bunifuImgBtnPP.Location = new System.Drawing.Point(217, 35);
+            this.bunifuImgBtnPP.Location = new System.Drawing.Point(217, 55);
             this.bunifuImgBtnPP.Name = "bunifuImgBtnPP";
             this.bunifuImgBtnPP.Rotation = 0;
             this.bunifuImgBtnPP.ShowActiveImage = false;
@@ -569,7 +545,7 @@
             this.bunifuVolumeBar.BorderThickness = 2;
             this.bunifuVolumeBar.DurationBeforeShrink = 2000;
             this.bunifuVolumeBar.LargeChange = 10;
-            this.bunifuVolumeBar.Location = new System.Drawing.Point(468, 59);
+            this.bunifuVolumeBar.Location = new System.Drawing.Point(468, 79);
             this.bunifuVolumeBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bunifuVolumeBar.Maximum = 100;
             this.bunifuVolumeBar.Minimum = 0;
@@ -614,7 +590,7 @@
             this.bunifuImgBtnPrevious.ImageSize = new System.Drawing.Size(40, 40);
             this.bunifuImgBtnPrevious.ImageZoomSize = new System.Drawing.Size(50, 50);
             this.bunifuImgBtnPrevious.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnPrevious.InitialImage")));
-            this.bunifuImgBtnPrevious.Location = new System.Drawing.Point(105, 35);
+            this.bunifuImgBtnPrevious.Location = new System.Drawing.Point(105, 55);
             this.bunifuImgBtnPrevious.Name = "bunifuImgBtnPrevious";
             this.bunifuImgBtnPrevious.Rotation = 180;
             this.bunifuImgBtnPrevious.ShowActiveImage = true;
@@ -650,7 +626,7 @@
             this.bunifuImgBtnNext.ImageSize = new System.Drawing.Size(40, 40);
             this.bunifuImgBtnNext.ImageZoomSize = new System.Drawing.Size(50, 50);
             this.bunifuImgBtnNext.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnNext.InitialImage")));
-            this.bunifuImgBtnNext.Location = new System.Drawing.Point(329, 35);
+            this.bunifuImgBtnNext.Location = new System.Drawing.Point(329, 55);
             this.bunifuImgBtnNext.Name = "bunifuImgBtnNext";
             this.bunifuImgBtnNext.Rotation = 0;
             this.bunifuImgBtnNext.ShowActiveImage = true;
@@ -665,28 +641,110 @@
             this.bunifuImgBtnNext.ZoomSpeed = 10;
             this.bunifuImgBtnNext.Click += new System.EventHandler(this.bunifuImgBtnNext_Click);
             // 
-            // axWindowsMediaPlayer
+            // bunifuImgBtnPlaylist
             // 
-            this.axWindowsMediaPlayer.Enabled = true;
-            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(55, 52);
-            this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
-            this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
-            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(61, 53);
-            this.axWindowsMediaPlayer.TabIndex = 10;
-            this.axWindowsMediaPlayer.Visible = false;
-            this.axWindowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.axWindowsMediaPlayer_PlayStateChange);
+            this.bunifuImgBtnPlaylist.ActiveImage = null;
+            this.bunifuImgBtnPlaylist.AllowAnimations = true;
+            this.bunifuImgBtnPlaylist.AllowBuffering = false;
+            this.bunifuImgBtnPlaylist.AllowToggling = false;
+            this.bunifuImgBtnPlaylist.AllowZooming = true;
+            this.bunifuImgBtnPlaylist.AllowZoomingOnFocus = false;
+            this.bunifuImgBtnPlaylist.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuImgBtnPlaylist.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.bunifuImgBtnPlaylist.ErrorImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnPlaylist.ErrorImage")));
+            this.bunifuImgBtnPlaylist.FadeWhenInactive = false;
+            this.bunifuImgBtnPlaylist.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
+            this.bunifuImgBtnPlaylist.Image = global::MediaPlayer_07_13.Properties.Resources.Menu_26px_audio;
+            this.bunifuImgBtnPlaylist.ImageActive = null;
+            this.bunifuImgBtnPlaylist.ImageLocation = null;
+            this.bunifuImgBtnPlaylist.ImageMargin = 20;
+            this.bunifuImgBtnPlaylist.ImageSize = new System.Drawing.Size(30, 30);
+            this.bunifuImgBtnPlaylist.ImageZoomSize = new System.Drawing.Size(50, 50);
+            this.bunifuImgBtnPlaylist.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnPlaylist.InitialImage")));
+            this.bunifuImgBtnPlaylist.Location = new System.Drawing.Point(3, 3);
+            this.bunifuImgBtnPlaylist.Name = "bunifuImgBtnPlaylist";
+            this.bunifuImgBtnPlaylist.Rotation = 0;
+            this.bunifuImgBtnPlaylist.ShowActiveImage = true;
+            this.bunifuImgBtnPlaylist.ShowCursorChanges = true;
+            this.bunifuImgBtnPlaylist.ShowImageBorders = true;
+            this.bunifuImgBtnPlaylist.ShowSizeMarkers = false;
+            this.bunifuImgBtnPlaylist.Size = new System.Drawing.Size(50, 50);
+            this.bunifuImgBtnPlaylist.TabIndex = 16;
+            this.bunifuImgBtnPlaylist.ToolTipText = "";
+            this.bunifuImgBtnPlaylist.WaitOnLoad = false;
+            this.bunifuImgBtnPlaylist.Zoom = 20;
+            this.bunifuImgBtnPlaylist.ZoomSpeed = 10;
+            this.bunifuImgBtnPlaylist.Click += new System.EventHandler(this.bunifuImgBtnPlaylist_Click);
             // 
-            // pictureBoxAudioGif
+            // bunifuImgBtnMinimize
             // 
-            this.pictureBoxAudioGif.Enabled = false;
-            this.pictureBoxAudioGif.Image = global::MediaPlayer_07_13.Properties.Resources.AudioGif;
-            this.pictureBoxAudioGif.Location = new System.Drawing.Point(55, 55);
-            this.pictureBoxAudioGif.Name = "pictureBoxAudioGif";
-            this.pictureBoxAudioGif.Size = new System.Drawing.Size(581, 352);
-            this.pictureBoxAudioGif.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxAudioGif.TabIndex = 16;
-            this.pictureBoxAudioGif.TabStop = false;
-            this.pictureBoxAudioGif.Visible = false;
+            this.bunifuImgBtnMinimize.ActiveImage = null;
+            this.bunifuImgBtnMinimize.AllowAnimations = true;
+            this.bunifuImgBtnMinimize.AllowBuffering = false;
+            this.bunifuImgBtnMinimize.AllowToggling = false;
+            this.bunifuImgBtnMinimize.AllowZooming = true;
+            this.bunifuImgBtnMinimize.AllowZoomingOnFocus = false;
+            this.bunifuImgBtnMinimize.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuImgBtnMinimize.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.bunifuImgBtnMinimize.ErrorImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnMinimize.ErrorImage")));
+            this.bunifuImgBtnMinimize.FadeWhenInactive = false;
+            this.bunifuImgBtnMinimize.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
+            this.bunifuImgBtnMinimize.Image = global::MediaPlayer_07_13.Properties.Resources.minimize_window_audio;
+            this.bunifuImgBtnMinimize.ImageActive = null;
+            this.bunifuImgBtnMinimize.ImageLocation = null;
+            this.bunifuImgBtnMinimize.ImageMargin = 20;
+            this.bunifuImgBtnMinimize.ImageSize = new System.Drawing.Size(20, 20);
+            this.bunifuImgBtnMinimize.ImageZoomSize = new System.Drawing.Size(40, 40);
+            this.bunifuImgBtnMinimize.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnMinimize.InitialImage")));
+            this.bunifuImgBtnMinimize.Location = new System.Drawing.Point(537, 6);
+            this.bunifuImgBtnMinimize.Name = "bunifuImgBtnMinimize";
+            this.bunifuImgBtnMinimize.Rotation = 0;
+            this.bunifuImgBtnMinimize.ShowActiveImage = true;
+            this.bunifuImgBtnMinimize.ShowCursorChanges = true;
+            this.bunifuImgBtnMinimize.ShowImageBorders = true;
+            this.bunifuImgBtnMinimize.ShowSizeMarkers = false;
+            this.bunifuImgBtnMinimize.Size = new System.Drawing.Size(40, 40);
+            this.bunifuImgBtnMinimize.TabIndex = 3;
+            this.bunifuImgBtnMinimize.ToolTipText = "";
+            this.bunifuImgBtnMinimize.WaitOnLoad = false;
+            this.bunifuImgBtnMinimize.Zoom = 20;
+            this.bunifuImgBtnMinimize.ZoomSpeed = 10;
+            this.bunifuImgBtnMinimize.Click += new System.EventHandler(this.bunifuImgBtnMinimize_Click);
+            // 
+            // bunifuImgBtnClose
+            // 
+            this.bunifuImgBtnClose.ActiveImage = null;
+            this.bunifuImgBtnClose.AllowAnimations = true;
+            this.bunifuImgBtnClose.AllowBuffering = false;
+            this.bunifuImgBtnClose.AllowToggling = false;
+            this.bunifuImgBtnClose.AllowZooming = true;
+            this.bunifuImgBtnClose.AllowZoomingOnFocus = false;
+            this.bunifuImgBtnClose.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuImgBtnClose.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.bunifuImgBtnClose.ErrorImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnClose.ErrorImage")));
+            this.bunifuImgBtnClose.FadeWhenInactive = false;
+            this.bunifuImgBtnClose.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
+            this.bunifuImgBtnClose.Image = global::MediaPlayer_07_13.Properties.Resources.close_app_audio;
+            this.bunifuImgBtnClose.ImageActive = null;
+            this.bunifuImgBtnClose.ImageLocation = null;
+            this.bunifuImgBtnClose.ImageMargin = 20;
+            this.bunifuImgBtnClose.ImageSize = new System.Drawing.Size(20, 20);
+            this.bunifuImgBtnClose.ImageZoomSize = new System.Drawing.Size(40, 40);
+            this.bunifuImgBtnClose.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImgBtnClose.InitialImage")));
+            this.bunifuImgBtnClose.Location = new System.Drawing.Point(583, 6);
+            this.bunifuImgBtnClose.Name = "bunifuImgBtnClose";
+            this.bunifuImgBtnClose.Rotation = 0;
+            this.bunifuImgBtnClose.ShowActiveImage = true;
+            this.bunifuImgBtnClose.ShowCursorChanges = true;
+            this.bunifuImgBtnClose.ShowImageBorders = true;
+            this.bunifuImgBtnClose.ShowSizeMarkers = false;
+            this.bunifuImgBtnClose.Size = new System.Drawing.Size(40, 40);
+            this.bunifuImgBtnClose.TabIndex = 2;
+            this.bunifuImgBtnClose.ToolTipText = "";
+            this.bunifuImgBtnClose.WaitOnLoad = false;
+            this.bunifuImgBtnClose.Zoom = 20;
+            this.bunifuImgBtnClose.ZoomSpeed = 10;
+            this.bunifuImgBtnClose.Click += new System.EventHandler(this.bunifuImgBtnClose_Click);
             // 
             // FormAudioPlayer
             // 
@@ -720,7 +778,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTopo;
-        private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.MenuStrip menuStripOptions;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFicheiro;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSair;
@@ -750,5 +807,7 @@
         private Bunifu.UI.WinForms.BunifuImageButton bunifuImgBtnVolume;
         private Bunifu.UI.WinForms.BunifuImageButton bunifuImgBtnLoop;
         private System.Windows.Forms.PictureBox pictureBoxAudioGif;
+        private Bunifu.UI.WinForms.BunifuImageButton bunifuImgBtnMinimize;
+        private Bunifu.UI.WinForms.BunifuImageButton bunifuImgBtnClose;
     }
 }

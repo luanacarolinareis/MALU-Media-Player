@@ -73,6 +73,16 @@ namespace MediaPlayer_07_13.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close_app_audio {
+            get {
+                object obj = ResourceManager.GetObject("close_app_audio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap forward_10_audio {
             get {
                 object obj = ResourceManager.GetObject("forward_10_audio", resourceCulture);
@@ -86,6 +96,16 @@ namespace MediaPlayer_07_13.Properties {
         internal static System.Drawing.Bitmap Menu_26px_audio {
             get {
                 object obj = ResourceManager.GetObject("Menu_26px_audio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minimize_window_audio {
+            get {
+                object obj = ResourceManager.GetObject("minimize_window_audio", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

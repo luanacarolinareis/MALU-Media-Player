@@ -44,11 +44,26 @@ namespace MediaPlayer_07_13
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonClose_Click(object sender, EventArgs e)
+        private void bunifuImgBtnClose_Click(object sender, EventArgs e)
         {
+            // para o timer
             timer.Stop();
+
+            // para a reprodução
             axWindowsMediaPlayer.Ctlcontrols.stop();
+
+            // fecha o formulário
             this.Close();
+        }
+
+        /// <summary>
+        /// Minimiza o formulário
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bunifuImgBtnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         #endregion
@@ -105,6 +120,8 @@ namespace MediaPlayer_07_13
         }
 
         #endregion
+
+        #region Controlos de iniciação do áudio
 
         /// <summary>
         /// Detetor da mudança de estado da mídia
@@ -229,7 +246,9 @@ namespace MediaPlayer_07_13
             // inicia o timer para fazer o registo temporal
             timer.Enabled = true;
         }
-        
+
+        #endregion
+
         #region Botões funcionais
 
         /// <summary>
@@ -376,9 +395,6 @@ namespace MediaPlayer_07_13
 
                 // diminui o tamanho do formulário
                 this.Width = 477;
-
-                // deslocação do Gif visualizador de áudio
-                pictureBoxAudioGif.Location = new Point(41, 45);
             }
             else // senão,a playlist está escondida, e o botão fá-la aparecer
             {
@@ -390,9 +406,6 @@ namespace MediaPlayer_07_13
 
                 // aumenta o tamanho do formulário
                 this.Width = 616;
-
-                // deslocação do Gif visualizador de áudio
-                pictureBoxAudioGif.Location = new Point(180, 45);
             }
         }
 
@@ -512,6 +525,8 @@ namespace MediaPlayer_07_13
                 muteState = 0;
             }
         }
+
+        
 
         #endregion
 
