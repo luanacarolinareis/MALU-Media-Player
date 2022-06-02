@@ -272,5 +272,11 @@
   <ItemGroup>
     <None Include="Resources\AudioGif.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_app_audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimize_window_audio.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
