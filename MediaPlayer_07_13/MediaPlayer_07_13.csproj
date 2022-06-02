@@ -280,5 +280,26 @@
   <ItemGroup>
     <None Include="Resources\close_app.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aimp Player_350px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\visual_studio_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\source_code_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jesus boy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lulu_aka_trabalhadora.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

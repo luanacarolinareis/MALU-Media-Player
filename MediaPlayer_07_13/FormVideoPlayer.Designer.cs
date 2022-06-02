@@ -359,7 +359,7 @@
             this.btnReset.ImageSize = new System.Drawing.Size(56, 46);
             this.btnReset.ImageZoomSize = new System.Drawing.Size(76, 66);
             this.btnReset.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnReset.InitialImage")));
-            this.btnReset.Location = new System.Drawing.Point(816, 27);
+            this.btnReset.Location = new System.Drawing.Point(816, 35);
             this.btnReset.Name = "btnReset";
             this.btnReset.Rotation = 0;
             this.btnReset.ShowActiveImage = true;
@@ -395,7 +395,7 @@
             this.btnRestart.ImageSize = new System.Drawing.Size(46, 46);
             this.btnRestart.ImageZoomSize = new System.Drawing.Size(66, 66);
             this.btnRestart.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnRestart.InitialImage")));
-            this.btnRestart.Location = new System.Drawing.Point(508, 27);
+            this.btnRestart.Location = new System.Drawing.Point(508, 35);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Rotation = 0;
             this.btnRestart.ShowActiveImage = true;
@@ -418,7 +418,7 @@
             this.btnPictureInPicture.AllowToggling = false;
             this.btnPictureInPicture.AllowZooming = false;
             this.btnPictureInPicture.AllowZoomingOnFocus = false;
-            this.btnPictureInPicture.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPictureInPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPictureInPicture.BackColor = System.Drawing.Color.Transparent;
             this.btnPictureInPicture.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnPictureInPicture.ErrorImage = ((System.Drawing.Image)(resources.GetObject("btnPictureInPicture.ErrorImage")));
@@ -431,7 +431,7 @@
             this.btnPictureInPicture.ImageSize = new System.Drawing.Size(46, 46);
             this.btnPictureInPicture.ImageZoomSize = new System.Drawing.Size(66, 66);
             this.btnPictureInPicture.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnPictureInPicture.InitialImage")));
-            this.btnPictureInPicture.Location = new System.Drawing.Point(201, 27);
+            this.btnPictureInPicture.Location = new System.Drawing.Point(201, 35);
             this.btnPictureInPicture.Name = "btnPictureInPicture";
             this.btnPictureInPicture.Rotation = 0;
             this.btnPictureInPicture.ShowActiveImage = true;
@@ -454,7 +454,7 @@
             this.btnFullScreen.AllowToggling = false;
             this.btnFullScreen.AllowZooming = false;
             this.btnFullScreen.AllowZoomingOnFocus = false;
-            this.btnFullScreen.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFullScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFullScreen.BackColor = System.Drawing.Color.Transparent;
             this.btnFullScreen.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnFullScreen.ErrorImage = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.ErrorImage")));
@@ -467,7 +467,7 @@
             this.btnFullScreen.ImageSize = new System.Drawing.Size(46, 46);
             this.btnFullScreen.ImageZoomSize = new System.Drawing.Size(66, 66);
             this.btnFullScreen.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.InitialImage")));
-            this.btnFullScreen.Location = new System.Drawing.Point(129, 27);
+            this.btnFullScreen.Location = new System.Drawing.Point(129, 35);
             this.btnFullScreen.Name = "btnFullScreen";
             this.btnFullScreen.Rotation = 0;
             this.btnFullScreen.ShowActiveImage = true;
@@ -504,7 +504,7 @@
             this.btnMute.ImageSize = new System.Drawing.Size(40, 40);
             this.btnMute.ImageZoomSize = new System.Drawing.Size(60, 60);
             this.btnMute.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnMute.InitialImage")));
-            this.btnMute.Location = new System.Drawing.Point(1074, 33);
+            this.btnMute.Location = new System.Drawing.Point(1074, 41);
             this.btnMute.Name = "btnMute";
             this.btnMute.Rotation = 0;
             this.btnMute.ShowActiveImage = true;
@@ -539,7 +539,7 @@
             this.bunifuVolumeBar.BorderThickness = 2;
             this.bunifuVolumeBar.DurationBeforeShrink = 2000;
             this.bunifuVolumeBar.LargeChange = 10;
-            this.bunifuVolumeBar.Location = new System.Drawing.Point(1141, 55);
+            this.bunifuVolumeBar.Location = new System.Drawing.Point(1141, 63);
             this.bunifuVolumeBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bunifuVolumeBar.Maximum = 100;
             this.bunifuVolumeBar.Minimum = 0;
@@ -566,7 +566,7 @@
             // bunifuProgressBar
             // 
             this.bunifuProgressBar.AllowCursorChanges = true;
-            this.bunifuProgressBar.AllowHomeEndKeysDetection = false;
+            this.bunifuProgressBar.AllowHomeEndKeysDetection = true;
             this.bunifuProgressBar.AllowIncrementalClickMoves = true;
             this.bunifuProgressBar.AllowMouseDownEffects = false;
             this.bunifuProgressBar.AllowMouseHoverEffects = false;
@@ -574,14 +574,13 @@
             this.bunifuProgressBar.AllowScrollKeysDetection = true;
             this.bunifuProgressBar.AllowScrollOptionsMenu = true;
             this.bunifuProgressBar.AllowShrinkingOnFocusLost = false;
-            this.bunifuProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuProgressBar.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuProgressBar.BackColor = System.Drawing.Color.Black;
             this.bunifuProgressBar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuProgressBar.BackgroundImage")));
             this.bunifuProgressBar.BindingContainer = null;
             this.bunifuProgressBar.BorderRadius = 2;
             this.bunifuProgressBar.BorderThickness = 1;
             this.bunifuProgressBar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuProgressBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.bunifuProgressBar.DrawThickBorder = false;
             this.bunifuProgressBar.DurationBeforeShrink = 2000;
             this.bunifuProgressBar.ElapsedColor = System.Drawing.Color.LightSlateGray;
@@ -599,7 +598,7 @@
             this.bunifuProgressBar.ScrollBarBorderColor = System.Drawing.Color.White;
             this.bunifuProgressBar.ScrollBarColor = System.Drawing.Color.White;
             this.bunifuProgressBar.ShrinkSizeLimit = 3;
-            this.bunifuProgressBar.Size = new System.Drawing.Size(1399, 31);
+            this.bunifuProgressBar.Size = new System.Drawing.Size(1390, 31);
             this.bunifuProgressBar.SliderColor = System.Drawing.Color.White;
             this.bunifuProgressBar.SliderStyle = Bunifu.UI.WinForms.BunifuHSlider.SliderStyles.Thin;
             this.bunifuProgressBar.SliderThumbStyle = Utilities.BunifuSlider.BunifuHScrollBar.SliderThumbStyles.Circular;
@@ -607,7 +606,7 @@
             this.bunifuProgressBar.TabIndex = 14;
             this.bunifuProgressBar.ThumbColor = System.Drawing.Color.MediumOrchid;
             this.bunifuProgressBar.ThumbFillColor = System.Drawing.Color.White;
-            this.bunifuProgressBar.ThumbLength = 138;
+            this.bunifuProgressBar.ThumbLength = 137;
             this.bunifuProgressBar.ThumbMargin = 1;
             this.bunifuProgressBar.ThumbSize = Bunifu.UI.WinForms.BunifuHSlider.ThumbSizes.Medium;
             this.bunifuProgressBar.ThumbStyle = Bunifu.UI.WinForms.BunifuHSlider.ThumbStyles.Outline;
@@ -635,7 +634,7 @@
             this.btnJumpForward.ImageSize = new System.Drawing.Size(56, 46);
             this.btnJumpForward.ImageZoomSize = new System.Drawing.Size(76, 66);
             this.btnJumpForward.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnJumpForward.InitialImage")));
-            this.btnJumpForward.Location = new System.Drawing.Point(734, 27);
+            this.btnJumpForward.Location = new System.Drawing.Point(734, 35);
             this.btnJumpForward.Name = "btnJumpForward";
             this.btnJumpForward.Rotation = 0;
             this.btnJumpForward.ShowActiveImage = true;
@@ -671,7 +670,7 @@
             this.btnJumpBack.ImageSize = new System.Drawing.Size(56, 46);
             this.btnJumpBack.ImageZoomSize = new System.Drawing.Size(76, 66);
             this.btnJumpBack.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnJumpBack.InitialImage")));
-            this.btnJumpBack.Location = new System.Drawing.Point(580, 27);
+            this.btnJumpBack.Location = new System.Drawing.Point(580, 35);
             this.btnJumpBack.Name = "btnJumpBack";
             this.btnJumpBack.Rotation = 0;
             this.btnJumpBack.ShowActiveImage = true;
@@ -707,7 +706,7 @@
             this.btnPlay.ImageSize = new System.Drawing.Size(46, 46);
             this.btnPlay.ImageZoomSize = new System.Drawing.Size(66, 66);
             this.btnPlay.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnPlay.InitialImage")));
-            this.btnPlay.Location = new System.Drawing.Point(662, 27);
+            this.btnPlay.Location = new System.Drawing.Point(662, 35);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Rotation = 0;
             this.btnPlay.ShowActiveImage = true;
@@ -728,7 +727,7 @@
             this.labelVolume.AutoSize = true;
             this.labelVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVolume.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.labelVolume.Location = new System.Drawing.Point(1171, 31);
+            this.labelVolume.Location = new System.Drawing.Point(1171, 39);
             this.labelVolume.Name = "labelVolume";
             this.labelVolume.Size = new System.Drawing.Size(42, 20);
             this.labelVolume.TabIndex = 17;
@@ -768,6 +767,7 @@
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(1390, 548);
             this.axWindowsMediaPlayer1.TabIndex = 0;
             this.axWindowsMediaPlayer1.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.axWindowsMediaPlayer1_PlayStateChange);
+            this.axWindowsMediaPlayer1.MouseUpEvent += new AxWMPLib._WMPOCXEvents_MouseUpEventHandler(this.axWindowsMediaPlayer1_MouseUpEvent);
             // 
             // FormVideoPlayer
             // 
@@ -779,9 +779,11 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.MinimizeBox = false;
             this.Name = "FormVideoPlayer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormVideoPlayer_KeyDown);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.menuStripOptions.ResumeLayout(false);

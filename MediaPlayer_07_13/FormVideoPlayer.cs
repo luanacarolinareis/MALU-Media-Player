@@ -28,6 +28,7 @@ namespace MediaPlayer_07_13
 
             // Remoção dos controlos do "Windows Media Player"
             axWindowsMediaPlayer1.uiMode = "none";
+            axWindowsMediaPlayer1.Ctlenabled = false;
 
             // Muda as configurações de cores do MenuStripOptions
             menuStripOptions.Renderer = new ToolStripProfessionalRenderer(new MyColorTable());
@@ -249,6 +250,26 @@ namespace MediaPlayer_07_13
 
             // Apresentação do valor do volume ao utilizador
             labelVolume.Text = Convert.ToString(bunifuVolumeBar.Value) + "%";
+
+            // Se o volume for 0
+            if (bunifuVolumeBar.Value == 0)
+            {
+                // Altera a imagem do botão para "mute"
+                btnMute.Image = Properties.Resources.mute;
+
+                // Alteração do valor do controlador para 1
+                muteClick = 1;
+            }
+
+            // Senão, se o volume for diferente de 0
+            else
+            {
+                // Altera a imagem do botão para "sound"
+                btnMute.Image = Properties.Resources.sound;
+
+                // Alteração do valor do controlador para 0
+                muteClick = 0;
+            }
         }
 
         /// <summary>
@@ -351,6 +372,11 @@ namespace MediaPlayer_07_13
             {
                 this.WindowState = FormWindowState.Maximized;
                 panel2.Visible = false;
+
+                // O painel de controlos fica invisível
+                panel3.Height = 0;
+
+                // Alteração do valor do controlador para 1
                 fullScreenClick = 1;
             }
 
@@ -359,6 +385,8 @@ namespace MediaPlayer_07_13
             {
                 this.WindowState = FormWindowState.Normal;
                 panel2.Visible = true;
+
+                // Alteração do valor do controlador para 0
                 fullScreenClick = 0;
             }
         }
@@ -603,7 +631,7 @@ namespace MediaPlayer_07_13
         }
 
         /// <summary>
-        /// Scrool da barra de progresso
+        /// Scroll da barra de progresso
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -613,8 +641,201 @@ namespace MediaPlayer_07_13
             axWindowsMediaPlayer1.Ctlcontrols.currentPosition = bunifuProgressBar.Value;
         }
 
+        /// <summary>
+        /// Quando se clica por cima do player, os controlos aparecem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void axWindowsMediaPlayer1_MouseUpEvent(object sender, AxWMPLib._WMPOCXEvents_MouseUpEvent e)
+        {
+            // Se estiver em full screen ou "maximizado"
+            if (fullScreenClick == 1 || maximizeClick == 1)
+            {
+                // Se o painel de controlos estiver oculto
+                if (panel3.Height == 0)
+                {
+                    // Os botões ficam visíveis
+                    btnFullScreen.Height = 54;
+                    btnPictureInPicture.Height = 54;
+                    btnRestart.Height = 54;
+                    btnReset.Height = 54;
+                    btnPlay.Height = 54;
+                    btnJumpBack.Height = 54;
+                    btnJumpForward.Height = 54;
+                    btnMute.Height = 49;
+                    labelVolume.Height = 17;
+                    bunifuVolumeBar.Height = 15;
+
+                    // O painel fica gradualmente visível
+                    for (int i = 1; i <= 9; i++)
+                    {
+                        panel3.Height += 9;
+                    }
+                }
+
+                // Senão, se o painel de controlos estiver visível
+                else
+                {
+                    // Os botões ficam invisíveis
+                    btnFullScreen.Height = 0;
+                    btnPictureInPicture.Height = 0;
+                    btnRestart.Height = 0;
+                    btnReset.Height = 0;
+                    btnPlay.Height = 0;
+                    btnJumpBack.Height = 0;
+                    btnJumpForward.Height = 0;
+                    btnMute.Height = 0;
+                    labelVolume.Height = 0;
+                    bunifuVolumeBar.Height = 0;
+
+                    // O painel fica gradualmente invisível
+                    for (int i = 9; i >= 1; i--)
+                    {
+                        panel3.Height -= 9;
+                    }
+                }
+
+            }
+            
+            // Se não estiver em full screen nem "maximizado"
+            else
+            {
+                panel3.Height = 81;
+            }
+        }
+
         #endregion
 
+        #region Teclas de atalho
+
+        /// <summary>
+        /// Teclas para acessibilidade do utilizador
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormVideoPlayer_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Se pressionar "Esc"
+            if (e.KeyCode == Keys.Escape)
+            {
+                // Se estiver em modo full screen
+                if (fullScreenClick == 1)
+                {
+                    btnFullScreen.PerformClick();
+
+                    // Se o painel de controlos estiver invisível
+                    if (panel3.Height == 0)
+                    {
+                        // Os botões ficam visíveis
+                        btnFullScreen.Height = 54;
+                        btnPictureInPicture.Height = 54;
+                        btnRestart.Height = 54;
+                        btnReset.Height = 54;
+                        btnPlay.Height = 54;
+                        btnJumpBack.Height = 54;
+                        btnJumpForward.Height = 54;
+                        btnMute.Height = 49;
+                        labelVolume.Height = 17;
+                        bunifuVolumeBar.Height = 15;
+
+                        // O painel fica gradualmente visível
+                        for (int i = 1; i <= 9; i++)
+                        {
+                            panel3.Height += 9;
+                        }
+                    }
+                }
+
+                // Senão, se estiver em modo "Picture-in-Picture"
+                else if (pictureInPictureClick == 1)
+                {
+                    btnExitPIP.PerformClick();
+                }
+            }
+
+            // Senão, se pressionar "P" faz um clique no botão play / pause
+            else if (e.KeyCode == Keys.P)
+            {
+                btnPlay.PerformClick();
+            }
+
+            // Senão, se pressionar "F" faz um clique no botão full screen
+            else if (e.KeyCode == Keys.F)
+            {
+                btnFullScreen.PerformClick();
+
+                // Os botões ficam visíveis
+                btnFullScreen.Height = 54;
+                btnPictureInPicture.Height = 54;
+                btnRestart.Height = 54;
+                btnReset.Height = 54;
+                btnPlay.Height = 54;
+                btnJumpBack.Height = 54;
+                btnJumpForward.Height = 54;
+                btnMute.Height = 49;
+                labelVolume.Height = 17;
+                bunifuVolumeBar.Height = 15;
+
+                // Se o painel de controlos estiver invisível
+                if (panel3.Height == 0)
+                {
+                    // O painel fica gradualmente visível
+                    for (int i = 1; i <= 9; i++)
+                    {
+                        panel3.Height += 9;
+                    }
+                }
+            }
+
+            // Senão, se pressionar "M" faz um clique no botão de mute
+            else if (e.KeyCode == Keys.M)
+            {
+                btnMute.PerformClick();
+            }
+
+            // Senão, se pressionar "seta esquerda" faz um clique no botão de jump back
+            else if (e.KeyCode == Keys.Left)
+            {
+                btnJumpBack.PerformClick();
+            }
+
+            // Senão, se pressionar "seta direita" faz um clique no botão de jump forward
+            else if (e.KeyCode == Keys.Right)
+            {
+                btnJumpForward.PerformClick();
+            }
+
+            // Senão, se pressionar "R" faz um clique no botão de reset
+            else if (e.KeyCode == Keys.R)
+            {
+                btnReset.PerformClick();
+            }
+
+            // Senão, se pressionar "L" faz um clique no botão de restart
+            else if (e.KeyCode == Keys.L)
+            {
+                btnRestart.PerformClick();
+            }
+
+            // Senão, se pressionar "I" faz um clique no botão de picture-in-picture
+            else if (e.KeyCode == Keys.I)
+            {
+                // Vai para modo "Picture-in-Picture"
+                if (pictureInPictureClick == 0)
+                {
+                    btnPictureInPicture.PerformClick();
+                }
+
+                // Sai do modo "Picture-in-picture"
+                else
+                {
+                    btnExitPIP.PerformClick();
+                }
+            }
+
+        }
+
+        #endregion
     }
 
     #region ProfessionalColorTable para o "MenuStripOptions"
