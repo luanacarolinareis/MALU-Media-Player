@@ -149,7 +149,7 @@ namespace MediaPlayer_07_13
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             try
             {

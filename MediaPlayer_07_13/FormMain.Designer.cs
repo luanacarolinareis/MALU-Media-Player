@@ -156,7 +156,7 @@
             this.ToolStripMenuItemAudioPlayer.BackColor = System.Drawing.Color.Black;
             this.ToolStripMenuItemAudioPlayer.ForeColor = System.Drawing.Color.White;
             this.ToolStripMenuItemAudioPlayer.Name = "ToolStripMenuItemAudioPlayer";
-            this.ToolStripMenuItemAudioPlayer.Size = new System.Drawing.Size(190, 26);
+            this.ToolStripMenuItemAudioPlayer.Size = new System.Drawing.Size(224, 26);
             this.ToolStripMenuItemAudioPlayer.Text = "Audio Player";
             this.ToolStripMenuItemAudioPlayer.Click += new System.EventHandler(this.ToolStripMenuItemAudioPlayer_Click);
             // 
@@ -165,7 +165,7 @@
             this.ToolStripMenuItemVideoPlayer.BackColor = System.Drawing.Color.Black;
             this.ToolStripMenuItemVideoPlayer.ForeColor = System.Drawing.Color.White;
             this.ToolStripMenuItemVideoPlayer.Name = "ToolStripMenuItemVideoPlayer";
-            this.ToolStripMenuItemVideoPlayer.Size = new System.Drawing.Size(190, 26);
+            this.ToolStripMenuItemVideoPlayer.Size = new System.Drawing.Size(224, 26);
             this.ToolStripMenuItemVideoPlayer.Text = "Video Player";
             this.ToolStripMenuItemVideoPlayer.Click += new System.EventHandler(this.ToolStripMenuItemVideoPlayer_Click);
             // 
@@ -177,14 +177,13 @@
             this.ToolStripMenuItemAjuda.Name = "ToolStripMenuItemAjuda";
             this.ToolStripMenuItemAjuda.Size = new System.Drawing.Size(68, 26);
             this.ToolStripMenuItemAjuda.Text = "Ajuda";
-            this.ToolStripMenuItemAjuda.Click += new System.EventHandler(this.ToolStripMenuItemVideoPlayer_Click);
             // 
             // ToolStripMenuItemAcercaDe
             // 
             this.ToolStripMenuItemAcercaDe.BackColor = System.Drawing.Color.Black;
             this.ToolStripMenuItemAcercaDe.ForeColor = System.Drawing.Color.White;
             this.ToolStripMenuItemAcercaDe.Name = "ToolStripMenuItemAcercaDe";
-            this.ToolStripMenuItemAcercaDe.Size = new System.Drawing.Size(181, 26);
+            this.ToolStripMenuItemAcercaDe.Size = new System.Drawing.Size(224, 26);
             this.ToolStripMenuItemAcercaDe.Text = "Acerca de...";
             this.ToolStripMenuItemAcercaDe.Click += new System.EventHandler(this.ToolStripMenuItemAcercaDe_Click);
             // 
