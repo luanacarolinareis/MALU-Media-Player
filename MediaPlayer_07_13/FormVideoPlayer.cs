@@ -832,9 +832,7 @@ namespace MediaPlayer_07_13
                     btnExitPIP.PerformClick();
                 }
             }
-
         }
-
         #endregion
     }
 
