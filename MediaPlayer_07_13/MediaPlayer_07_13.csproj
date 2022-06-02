@@ -135,6 +135,14 @@
     <Reference Include="Bunifu.UI.WinForms.Deprecated, Version=5.3.0.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
       <HintPath>..\packages\Bunifu.UI.WinForms.5.3.0\lib\net40\Bunifu.UI.WinForms.Deprecated.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Downloads\Microsoft.DirectX.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.directx.audiovideoplayback, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Downloads\microsoft.directx.audiovideoplayback.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -186,6 +194,7 @@
     <EmbeddedResource Include="FormVideoPlayer.resx">
       <DependentUpon>FormVideoPlayer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -194,6 +203,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -208,6 +218,88 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\replay_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimize_window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture_in_picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repeat_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repeat_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_app.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aimp Player_350px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\visual_studio_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\source_code_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jesus boy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lulu_aka_trabalhadora.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
