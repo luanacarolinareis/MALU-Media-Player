@@ -64,6 +64,9 @@ Reprodutor de Áudio e Vídeo em C# (Windows Forms)
 
 <img src="https://github.com/user-attachments/assets/d233598e-9500-44b4-8db2-ddf981624357" width="500"/>
 <img src="https://github.com/user-attachments/assets/944bba59-28bd-4ceb-92f7-0a956fd1e77f" width="500"/>
+<img src="https://github.com/user-attachments/assets/a06b3c3c-69de-464c-a831-fb33accdd8cb" width="500"/>
+<img src="https://github.com/user-attachments/assets/740a1583-5aab-47ec-9e10-db77373c76fb" width="500"/>
+<img src="https://github.com/user-attachments/assets/d035c9cb-6486-4b30-99c8-75abba5c66ff" width="500"/>
 
 ## 📢 Contribuição
 
